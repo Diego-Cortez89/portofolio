@@ -1,0 +1,202 @@
+{
+  "updated": "2026-10-21T00:00:00.000Z",
+  "site": {
+    "name": "Sudarno Lamhot",
+    "role": "IT infrastructure, data center & ICT operations engineer",
+    "location": "Bekasi, Indonesia",
+    "nationality": "Indonesian national",
+    "footerNote": "Indonesian national · Open to rotation",
+    "repo": "diego-cortez89/portofolio",
+    "metaTitle": "Sudarno Lamhot — IT Infrastructure & Data Center Engineer",
+    "metaDescription": "Portfolio of Sudarno Lamhot: IT infrastructure, data center and ICT operations engineer with {years}+ years in 24/7 critical environments, available for Oil & Gas roles in the UAE and GCC."
+  },
+  "hero": {
+    "available": true,
+    "status": "Available for UAE / GCC deployment, onshore or offshore",
+    "statusUnavailable": "Currently engaged, open to future rotations",
+    "primaryCtaLabel": "Message on WhatsApp (UAE)",
+    "pitch": "{YearsWord} years keeping critical systems running around the clock, from production-line IT at Suzuki to building and operating Tier III and Tier IV data centers for Alibaba Cloud. I work to procedure, supervise contractors on live sites, and treat uptime and safety as the same job.",
+    "secondaryCta": { "label": "See project work", "href": "#projects" }
+  },
+  "datasheet": [
+    { "label": "Experience", "value": "{years}+ years, IT & infrastructure" },
+    { "label": "Facilities", "value": "Tier III & Tier IV data centers" },
+    { "label": "Operations", "value": "24/7 shift, SLA-driven" },
+    { "label": "Interconnect", "value": "Links to 10 countries" },
+    { "label": "Current", "value": "{current}" },
+    { "label": "Education", "value": "B.Eng. Information Engineering" }
+  ],
+  "sections": {
+    "career": { "title": "Career line", "intro": "Each stop added a layer: field support, enterprise applications, plant infrastructure, hyperscale facilities, cloud security. Select a stop to see the work." },
+    "capabilities": { "title": "What I bring to an operating site", "intro": "The habits that keep a data center online are the same ones a plant, a rig or a control room depends on." },
+    "projects": { "title": "Project work", "intro": "{ProjectCount} engagements that show how I work under pressure, with contractors, and to standard." },
+    "skills": { "title": "Technical toolkit", "intro": "Filter by area or search to see the systems I have installed, configured or operated in production." },
+    "education": { "title": "Education & training", "intro": "Engineering degree plus hands-on courses; offshore safety certification can be completed before mobilisation." },
+    "contact": { "title": "Let’s talk about your next site", "intro": "Reachable on WhatsApp or phone in both time zones. Full CV and references on request." }
+  },
+  "career": [
+    {
+      "id": "alfa", "short": "Alfamart", "title": "IT Store Support",
+      "company": "PT Sumber Alfaria Trijaya Tbk (Alfamart)",
+      "start": "2011-11", "end": "2012-12", "place": "Bekasi, Indonesia", "icon": "store",
+      "relevance": "Support across many remote, unmanned-hours sites, the same pattern as field and wellsite IT.",
+      "groups": [
+        { "label": "", "items": [
+          "Implemented POS systems for retail stores across the Bekasi area.",
+          "Troubleshot PCs and all in-store IT devices; configured TCP/IP networking.",
+          "Supported stores remotely and maintained store transaction databases."
+        ] }
+      ]
+    },
+    {
+      "id": "ifs", "short": "IFS Solutions", "title": "Application Engineer",
+      "company": "PT IFS Solutions Indonesia",
+      "start": "2013-01", "end": "2014-07", "place": "Jakarta, Indonesia", "icon": "app",
+      "relevance": "On-site ERP rollout for asset-intensive clients; comfortable at the client’s site and on their terms.",
+      "groups": [
+        { "label": "", "items": [
+          "Implemented IFS ERP modules on client sites.",
+          "Managed database backups for client environments."
+        ] }
+      ]
+    },
+    {
+      "id": "suzuki", "short": "Suzuki", "title": "IT Technical DBA & Operations",
+      "company": "PT Suzuki Indomobil Motor",
+      "start": "2014-09", "end": "2020-11", "place": "Bekasi, Indonesia", "icon": "factory",
+      "relevance": "Six years keeping a running production plant online: servers, networks and floor applications.",
+      "groups": [
+        { "label": "IT infrastructure", "items": [
+          "Installed and managed DNS, DHCP and mail servers; administered Windows Active Directory.",
+          "Built virtual servers on VMware vSphere, Hyper-V, OpenVZ and VirtualBox.",
+          "Installed material handling and production process applications on the plant floor.",
+          "Configured Cisco switching and managed ISP links from Telkom, Moratel, Biznet and First Media.",
+          "Led the building operations support team; deployed Trend Micro endpoint security."
+        ] },
+        { "label": "IT service management", "items": [
+          "Single point of contact and escalation for incidents, requests and problems across all departments.",
+          "Kept the asset register for notebooks, servers, switches, routers, software and licenses.",
+          "Managed vendors and reported weekly and monthly to the IT Manager."
+        ] }
+      ]
+    },
+    {
+      "id": "alibaba", "short": "Alibaba Cloud", "title": "Data Center Engineer",
+      "company": "PT Alibaba Cloud Indonesia",
+      "start": "2021-01", "end": "2021-10", "place": "Indonesia", "icon": "server", "featured": true,
+      "relevance": "Control-room monitoring, MOP-based maintenance and contractor control in a Tier III/IV facility.",
+      "groups": [
+        { "label": "Operations, 24/7 shift", "items": [
+          "Resolved priority tickets within SLA: delivery, repair, relocation, network and server.",
+          "Monitored power, temperature, humidity, HVAC/CRAC, fire suppression and extinguishers.",
+          "Monitored Cisco, Huawei and Ruijie core switches, Juniper routers and storage.",
+          "Supported end-to-end links to data centers in 10 countries.",
+          "Prepared audit documents and a Method of Procedure for every maintenance job."
+        ] },
+        { "label": "Construction project support", "items": [
+          "Supervised contractors installing raised floors, racks, trunking and fire safety equipment.",
+          "Installed and A–Z tested UTP, LC and MPO cabling to servers, network devices and POP.",
+          "Mounted equipment and enforced labeling and cabling standards; tracked logistics ETAs."
+        ] }
+      ]
+    },
+    {
+      "id": "infinisoft", "short": "InfiniSoft", "title": "IT Engineer",
+      "company": "InfiniSoft Technology DMCC (formerly PT Trix, Singapore)",
+      "start": "2021-11", "end": "", "place": "UAE", "icon": "shield",
+      "relevance": "Security monitoring and access control, directly transferable to IT/OT cyber security.",
+      "groups": [
+        { "label": "", "items": [
+          "Monitored security activity with Grafana dashboards and T-Pot honeypot rules.",
+          "Operated AWS services, managing memory allocation and cluster health.",
+          "Controlled domain security and access through Cloudflare.",
+          "Built and ran CI/CD pipelines; tested and maintained web apps in JavaScript and Node.js."
+        ] }
+      ]
+    },
+    {
+      "id": "next", "short": "Oil & Gas", "title": "Your ICT / infrastructure team",
+      "company": "Oil & Gas operations, UAE / GCC",
+      "start": "", "end": "", "place": "Onshore, offshore or rotational", "icon": "rig", "next": true,
+      "relevance": "Ready to mobilise. Safety certification (BOSIET, H2S) can be arranged before deployment.",
+      "groups": [
+        { "label": "", "items": [
+          "Field, plant and offshore network and server support.",
+          "Control room and data center utility monitoring.",
+          "Contractor supervision and structured cabling to standard.",
+          "IT service management and IT/OT security monitoring."
+        ] }
+      ]
+    }
+  ],
+  "capabilities": [
+    { "icon": "clock", "title": "24/7 critical operations", "text": "Shift work in a live facility, triaging tickets by priority and closing them inside SLA.", "site": "Fits: control rooms, plant IT, operations support" },
+    { "icon": "doc", "title": "Work to procedure", "text": "Method of Procedure written for every maintenance job, audit documents kept current, standards enforced.", "site": "Fits: permit-to-work culture, QA/QC, audits" },
+    { "icon": "hard", "title": "Contractor supervision", "text": "Escorted and guided vendors through installation, repair and relocation on a live data center floor.", "site": "Fits: shutdowns, construction, commissioning" },
+    { "icon": "net", "title": "Networks and structured cabling", "text": "Core switching and routing across four vendors; fiber and copper installed and tested end to end.", "site": "Fits: field telecom, LAN/WAN, site connectivity" },
+    { "icon": "bolt", "title": "Utility and environment monitoring", "text": "Power, HVAC/CRAC, humidity, fire suppression and extinguishers checked every shift.", "site": "Fits: equipment rooms, server shelters, UPS rooms" },
+    { "icon": "shield", "title": "Security and service management", "text": "Threat monitoring, access control and full ITSM: incidents, problems, assets, vendors, reporting.", "site": "Fits: IT/OT security, help desk leadership" }
+  ],
+  "projects": [
+    {
+      "id": "dc-build", "title": "Tier III / Tier IV data center build",
+      "sub": "Alibaba Cloud Indonesia · construction project support",
+      "start": "2021-01", "end": "2021-10",
+      "context": "Greenfield hyperscale facilities had to be delivered on schedule and to Alibaba’s global build standard.",
+      "did": "Supervised flooring, racking, trunking and fire safety contractors; installed and A–Z tested UTP, LC and MPO cabling; mounted network and server equipment.",
+      "result": "Installations, labeling and cabling handed over to standard, with all material received in good condition and logistics tracked to ETA.",
+      "tags": ["Commissioning", "Contractor control", "Fiber MPO/LC", "QA/QC"]
+    },
+    {
+      "id": "dc-ops", "title": "24/7 data center operations & global interconnect",
+      "sub": "Alibaba Cloud Indonesia · operations engineer",
+      "start": "2021-01", "end": "2021-10",
+      "context": "A live cloud region with strict SLAs and links to data centers in 10 countries.",
+      "did": "Ran shifts covering tickets, utilities and core network monitoring; prepared a Method of Procedure and audit pack for each maintenance job.",
+      "result": "Tickets closed by priority within SLA and every maintenance activity documented for audit.",
+      "tags": ["SLA", "MOP", "HVAC/CRAC", "Cisco · Huawei · Juniper"]
+    },
+    {
+      "id": "plant-it", "title": "Plant IT infrastructure & service desk",
+      "sub": "PT Suzuki Indomobil Motor · IT technical DBA & operations",
+      "start": "2014-09", "end": "2020-11",
+      "context": "An automotive plant where IT downtime stops the production line.",
+      "did": "Managed servers, Active Directory, virtualization, Cisco switching and four ISP links; ran incident, request and problem management for every department.",
+      "result": "Six years as the plant’s single point of escalation, with monthly reports driving continuous improvement.",
+      "tags": ["Production support", "ITSM", "Virtualization", "Multi-ISP"]
+    },
+    {
+      "id": "cloud-sec", "title": "Cloud security monitoring",
+      "sub": "InfiniSoft Technology DMCC, UAE (formerly PT Trix) · IT engineer",
+      "start": "2021-11", "end": "",
+      "context": "Client web platforms running on AWS needed monitoring, access control and reliable releases.",
+      "did": "Built Grafana and T-Pot monitoring, managed Cloudflare access policies, operated AWS clusters and maintained CI/CD.",
+      "result": "Security activity visible on dashboards and releases shipped through an automated pipeline.",
+      "tags": ["AWS", "Cloudflare", "Grafana", "T-Pot", "CI/CD"]
+    }
+  ],
+  "skills": [
+    { "category": "Network", "items": ["Cisco Catalyst switching", "Huawei & Ruijie core switches", "Juniper routing", "TCP/IP, LAN, DNS, DHCP", "Fiber LC / MPO & UTP", "Cisco IP telephony", "Motorola wireless controllers"] },
+    { "category": "Systems", "items": ["Windows Server", "Active Directory", "VMware vSphere", "Hyper-V", "OpenVZ", "Ubuntu Linux"] },
+    { "category": "Cloud & security", "items": ["AWS", "Cloudflare", "Grafana", "T-Pot", "Trend Micro"] },
+    { "category": "Data", "items": ["Oracle 10g", "SQL Server", "MySQL", "Backup & recovery"] },
+    { "category": "Operations", "items": ["ITSM: incident, problem, request", "Method of Procedure", "Asset & license inventory", "Vendor management", "HVAC/CRAC & power monitoring"] },
+    { "category": "Development", "items": ["JavaScript & Node.js", "PHP", "Java", "CI/CD", "HTML & CSS"] }
+  ],
+  "education": [
+    { "yr": "2007–2011", "title": "B.Eng. Information Engineering", "where": "Universitas Gunadarma" },
+    { "yr": "2010", "title": "MIDlet Java programming for mobile", "where": "Gunadarma" },
+    { "yr": "2009", "title": "Digital video production", "where": "Gunadarma" }
+  ],
+  "certifications": [
+    { "name": "BOSIET (offshore safety induction)", "status": "on-request", "year": "", "note": "Can be completed before mobilisation" },
+    { "name": "H2S awareness", "status": "on-request", "year": "", "note": "Can be completed before mobilisation" }
+  ],
+  "contact": {
+    "lines": [
+      { "label": "UAE mobile", "type": "phone", "value": "+971 54 213 2435", "tz": "Asia/Dubai", "city": "Dubai", "primary": true },
+      { "label": "Indonesia mobile", "type": "phone", "value": "+62 822 4964 769", "tz": "Asia/Jakarta", "city": "Jakarta", "primary": false },
+      { "label": "Email", "type": "email", "value": "darnoey@yahoo.com", "tz": "", "city": "", "primary": false }
+    ]
+  }
+}
