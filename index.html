@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sudarno Lamhot — IT Infrastructure & Data Center Engineer</title>
-<meta name="description" content="Portfolio of Sudarno Lamhot: IT infrastructure, data center and ICT operations engineer with 10+ years in 24/7 critical environments, available for Oil & Gas roles in the UAE and GCC.">
+<meta name="description" content="Portfolio of Sudarno Lamhot: IT infrastructure, data center and ICT operations engineer for 24/7 critical environments, available for Oil & Gas roles in the UAE and GCC.">
 <meta property="og:title" content="Sudarno Lamhot — IT Infrastructure & Data Center Engineer">
-<meta property="og:description" content="10+ years in 24/7 critical infrastructure. Tier III/IV data center build and operations. Available for Oil & Gas ICT roles in the UAE and GCC.">
+<meta property="og:description" content="Tier III/IV data center build and operations, 24/7 critical infrastructure. Available for Oil & Gas ICT roles in the UAE and GCC.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#14303D">
@@ -17,7 +17,7 @@
 <style>
 :root{
   --paper:#EDF1F2; --surface:#FFFFFF; --ink:#14303D; --steel:#4F6772; --rule:#C5D1D6;
-  --flow:#F2A900; --flow-ink:#7A5400; --ok:#1E8C5A; --focus:#1F6FEB;
+  --flow:#F2A900; --flow-ink:#7A5400; --ok:#1E8C5A; --hold:#B4541A; --focus:#1F6FEB;
   --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   --body:"Barlow","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   box-sizing:border-box;
@@ -27,16 +27,17 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --paper:#0E2129; --surface:#132C36; --ink:#E6EEF0; --steel:#9DB2BB; --rule:#28434E;
-    --flow:#F2B21C; --flow-ink:#F2B21C; --ok:#3DBB7F; --focus:#6EA8FE;
+    --flow:#F2B21C; --flow-ink:#F2B21C; --ok:#3DBB7F; --hold:#F08A4B; --focus:#6EA8FE;
   }
 }
 :root[data-theme="dark"]{
   --paper:#0E2129; --surface:#132C36; --ink:#E6EEF0; --steel:#9DB2BB; --rule:#28434E;
-  --flow:#F2B21C; --flow-ink:#F2B21C; --ok:#3DBB7F; --focus:#6EA8FE;
+  --flow:#F2B21C; --flow-ink:#F2B21C; --ok:#3DBB7F; --hold:#F08A4B; --focus:#6EA8FE;
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 img{max-width:100%}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:2px}
@@ -46,6 +47,7 @@ h2{font-size:clamp(34px,5vw,52px);font-weight:700}
 h3{font-size:24px;font-weight:600}
 p{margin:0 0 1em;max-width:68ch}
 .muted{color:var(--steel)}
+[hidden]{display:none!important}
 
 /* top bar */
 header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
@@ -62,16 +64,16 @@ nav.links a.on{color:var(--ink);box-shadow:inset 0 -3px 0 var(--flow)}
 .hero{padding:72px 0 40px}
 .hero-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:end}
 .status{display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:15px;color:var(--steel);margin-bottom:22px}
-.status i{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 var(--ok);animation:ping 2.4s infinite}
+.status i{width:9px;height:9px;border-radius:50%;background:var(--ok);animation:ping 2.4s infinite}
+.status.hold i{background:var(--hold);animation:none}
 @keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 60%,transparent)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
-.hero h1{font-size:clamp(56px,10vw,118px);font-weight:700;text-transform:none;line-height:.9}
+.hero h1{font-size:clamp(56px,10vw,118px);font-weight:700;line-height:.9}
 .hero .role{font-family:var(--display);font-weight:500;font-size:clamp(22px,2.6vw,30px);margin:18px 0 18px;color:var(--steel)}
 .hero p.pitch{font-size:19px}
 .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:8px;font-weight:600;font-size:16px;text-decoration:none;border:1.5px solid var(--ink);cursor:pointer;font-family:var(--body)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:8px;font-weight:600;font-size:16px;text-decoration:none;border:1.5px solid var(--ink);cursor:pointer;font-family:var(--body);background:transparent;color:var(--ink)}
 .btn.primary{background:var(--ink);color:var(--paper)}
 .btn.primary::before{content:"";width:4px;height:18px;background:var(--flow);border-radius:2px}
-.btn.ghost{background:transparent;color:var(--ink)}
 .datasheet{border:1.5px solid var(--ink);background:var(--surface);font-size:15px}
 .datasheet .ds-head{display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1.5px solid var(--ink);font-family:var(--display);font-weight:600;font-size:18px}
 .datasheet .ds-head span:last-child{color:var(--steel);font-weight:500}
@@ -89,7 +91,7 @@ section.block{padding:72px 0;border-top:1px solid var(--rule)}
 @media (max-width:860px){.sec-head{grid-template-columns:1fr;gap:14px}}
 
 /* career line (the pipeline) */
-.pipe{position:relative;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:0}
+.pipe{position:relative;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--n,6),1fr);gap:0}
 .pipe::before{content:"";position:absolute;left:8%;right:8%;top:31px;height:8px;border-radius:4px;background:var(--rule)}
 .pipe .flow{position:absolute;left:8%;right:8%;top:33px;height:4px;border-radius:2px;
   background:repeating-linear-gradient(90deg,var(--flow) 0 14px,transparent 14px 34px);background-size:34px 4px;animation:flow 1.1s linear infinite}
@@ -106,10 +108,12 @@ section.block{padding:72px 0;border-top:1px solid var(--rule)}
 .node:hover .valve{transform:scale(1.06)}
 .node.next .valve{border-style:dashed;border-color:var(--flow-ink)}
 .node.next .yr{color:var(--flow-ink)}
+.node.now .valve{box-shadow:0 0 0 4px color-mix(in srgb,var(--ok) 35%,transparent)}
 .panel{margin-top:28px;background:var(--surface);border:1.5px solid var(--ink);display:grid;grid-template-columns:1fr 1.6fr}
 .panel .meta{padding:28px;border-right:1px solid var(--rule)}
 .panel .meta h3{font-size:30px;margin-bottom:6px}
 .panel .meta .when{font-weight:600;margin-top:14px}
+.panel .meta .dur{display:inline-block;margin-left:6px;font-weight:500;color:var(--steel)}
 .panel .meta .rel{margin-top:22px;padding:14px 16px;background:color-mix(in srgb,var(--flow) 16%,transparent);border-left:4px solid var(--flow);font-size:15px}
 .panel .meta .rel b{display:block;font-family:var(--display);font-size:17px;margin-bottom:2px}
 .panel ul{margin:0;padding:28px 28px 28px 48px}
@@ -117,6 +121,9 @@ section.block{padding:72px 0;border-top:1px solid var(--rule)}
 .panel li::marker{color:var(--flow-ink)}
 .panel .group{font-family:var(--display);font-weight:600;font-size:19px;list-style:none;margin:16px 0 8px -20px}
 .panel .group:first-child{margin-top:0}
+.stepper{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;border-top:1px solid var(--rule);grid-column:1 / -1;font-size:15px}
+.stepper button{background:none;border:0;color:var(--steel);font:inherit;font-weight:600;cursor:pointer;padding:6px 4px}
+.stepper button:disabled{opacity:.35;cursor:default}
 @media (max-width:860px){
   .pipe{grid-template-columns:1fr;gap:6px}
   .pipe::before{left:33px;right:auto;top:20px;bottom:20px;width:8px;height:auto}
@@ -154,43 +161,65 @@ details[open] .plus{transform:rotate(45deg);background:var(--ink);color:var(--pa
 .proj .body{display:grid;grid-template-columns:120px repeat(3,1fr);gap:24px;padding:0 0 30px}
 .proj .body h4{font-family:var(--display);font-size:18px;margin:0 0 6px;font-weight:600}
 .proj .body p{font-size:16px;margin:0}
-.tags{grid-column:2 / -1;display:flex;flex-wrap:wrap;gap:8px}
-.tag{font-size:13px;font-weight:500;padding:4px 10px;border:1px solid var(--rule);border-radius:20px;color:var(--steel)}
+.proj .foot{grid-column:2 / -1;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tag{font-size:13px;font-weight:500;padding:4px 10px;border:1px solid var(--rule);border-radius:20px;color:var(--steel);background:none;font-family:var(--body);cursor:pointer}
+.tag:hover{border-color:var(--flow-ink);color:var(--ink)}
+.linkbtn{margin-left:auto;font-size:14px;font-weight:600;background:none;border:0;color:var(--steel);cursor:pointer;font-family:var(--body);padding:4px 0;text-decoration:underline;text-underline-offset:3px}
+.proj details.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%{background:color-mix(in srgb,var(--flow) 28%,transparent)}100%{background:transparent}}
 @media (max-width:760px){
   .proj summary{grid-template-columns:1fr auto;gap:12px}
   .proj summary .yr{grid-column:1 / -1;margin-bottom:-8px}
   .proj .body{grid-template-columns:1fr}
   .proj .body .spacer{display:none}
-  .tags{grid-column:1}
+  .proj .foot{grid-column:1}
 }
 
 /* skills */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.skill-tools{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-bottom:26px}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
 .filters button{font-family:var(--body);font-size:15px;font-weight:500;padding:8px 16px;border-radius:24px;border:1.5px solid var(--rule);background:transparent;color:var(--ink);cursor:pointer}
+.filters button span{color:var(--steel);margin-left:4px;font-variant-numeric:tabular-nums}
 .filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.skills{display:flex;flex-wrap:wrap;gap:10px;min-height:120px}
+.filters button[aria-pressed="true"] span{color:color-mix(in srgb,var(--paper) 70%,transparent)}
+.search{margin-left:auto;position:relative}
+.search input{box-sizing:border-box;font:inherit;font-size:15px;padding:9px 14px 9px 38px;border:1.5px solid var(--rule);border-radius:24px;background:var(--surface);color:var(--ink);width:240px;max-width:100%}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);stroke:var(--steel)}
+@media (max-width:760px){.search{margin-left:0;width:100%}.search input{width:100%}}
+.skills{display:flex;flex-wrap:wrap;gap:10px;min-height:120px;align-content:flex-start}
 .skill{padding:10px 16px;background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--flow);font-weight:500;transition:opacity .25s,transform .25s}
 .skill.dim{opacity:.18;transform:scale(.97)}
+.skill mark{background:color-mix(in srgb,var(--flow) 45%,transparent);color:inherit;border-radius:2px}
+.empty{color:var(--steel);padding:12px 0}
 
 /* education */
 .edu{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1.5px solid var(--ink)}
 .edu > div{padding:24px 24px 24px 0;border-right:1px solid var(--rule)}
 .edu > div + div{padding-left:24px}
-.edu > div:last-child{border-right:0}
+.edu > div:nth-child(3n){border-right:0}
 .edu .yr{font-family:var(--display);font-weight:600;color:var(--steel)}
 .edu h3{margin:6px 0 6px;font-size:22px}
+.certs{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+.cert{display:flex;align-items:center;gap:12px;padding:12px 16px;border:1.5px solid var(--rule);background:var(--surface)}
+.cert b{font-weight:600}
+.cert .st{font-size:13px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.cert .st.done{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.cert .st.progress{background:color-mix(in srgb,var(--focus) 16%,transparent);color:var(--focus)}
+.cert .st.on-request{background:color-mix(in srgb,var(--flow) 22%,transparent);color:var(--flow-ink)}
+.cert small{display:block;color:var(--steel);font-size:14px}
 @media (max-width:760px){.edu{grid-template-columns:1fr}.edu > div,.edu > div + div{padding:20px 0;border-right:0;border-bottom:1px solid var(--rule)}}
 
 /* contact */
 .contact{background:var(--ink);color:var(--paper);padding:80px 0}
 .contact h2{color:var(--paper)}
 .contact .muted{color:color-mix(in srgb,var(--paper) 70%,transparent)}
-.lines{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid color-mix(in srgb,var(--paper) 25%,transparent)}
+.lines{margin-top:36px;display:grid;grid-template-columns:repeat(var(--n,3),1fr);border-top:1px solid color-mix(in srgb,var(--paper) 25%,transparent)}
 .line{padding:26px 24px 26px 0;border-right:1px solid color-mix(in srgb,var(--paper) 25%,transparent)}
 .line + .line{padding-left:24px}
 .line:last-child{border-right:0}
 .line .lbl{font-size:15px;color:color-mix(in srgb,var(--paper) 70%,transparent);display:flex;justify-content:space-between;gap:8px}
 .line .lbl time{font-variant-numeric:tabular-nums}
+.line .lbl time.off{color:color-mix(in srgb,var(--paper) 45%,transparent)}
 .line .val{font-family:var(--display);font-weight:600;font-size:clamp(24px,2.6vw,30px);margin:6px 0 16px;word-break:break-word}
 .line .acts{display:flex;flex-wrap:wrap;gap:8px}
 .contact .btn{border-color:var(--paper);color:var(--paper);background:transparent;padding:9px 14px;font-size:15px}
@@ -202,6 +231,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:8px;font-weight:500;opacity:0;transition:.25s;pointer-events:none;z-index:50}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+/* load / error states */
+.loading .needs-data{visibility:hidden}
+.fail{margin:40px auto;max-width:640px;padding:24px;border:1.5px solid var(--hold);background:var(--surface)}
+.fail h3{margin-bottom:8px}
+.fail code{font-size:14px}
+
 /* single orchestrated load sequence */
 .load{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
 .load.d1{animation-delay:.08s}.load.d2{animation-delay:.18s}.load.d3{animation-delay:.3s}.load.d4{animation-delay:.44s}
@@ -211,24 +246,41 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   .load{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
-@media print{header.bar,.ctas,.filters,.iconbtn,.contact .acts,.toast{display:none!important}.contact{background:none;color:#000}}
+
+/* printable CV: same data, laid out for paper */
+.print-only{display:none}
+@media print{
+  @page{margin:14mm 14mm 16mm}
+  :root{--paper:#fff;--surface:#fff;--ink:#14303D;--steel:#4F6772;--rule:#C5D1D6}
+  body{font-size:11pt;line-height:1.45}
+  body::before,header.bar,.ctas,.skill-tools,.iconbtn,.contact .acts,.toast,#career .pipe,#career .panel,.linkbtn,.plus,footer .upd{display:none!important}
+  .print-only{display:block}
+  .hero{padding:0 0 12px}.hero h1{font-size:40pt}.hero-grid{grid-template-columns:1.3fr 1fr;gap:24px}
+  .load{opacity:1!important;transform:none!important;animation:none!important}
+  section.block{padding:18px 0;break-inside:auto}
+  .sec-head{margin-bottom:12px;grid-template-columns:1fr}.sec-head p{display:none}
+  h2{font-size:20pt}
+  .sec-head,h2,.pr-role h3{break-after:avoid}
+  .caps{grid-template-columns:repeat(3,1fr)}.cap,.cap:nth-child(even){padding:10px 12px 10px 0;border-right:0}.cap h3{font-size:13pt}
+  .pr-role{break-inside:avoid;padding:8px 0;border-bottom:1px solid var(--rule)}
+  .pr-role h3{font-size:14pt}.pr-role ul{margin:4px 0 0;padding-left:18px}
+  .proj summary{padding:10px 0}.proj .body{padding-bottom:12px}
+  .proj details{break-inside:avoid}
+  .skill{padding:3px 8px;font-size:9.5pt}.skill.dim{opacity:1;transform:none}
+  .contact{background:none;color:#000;padding:18px 0}.contact h2,.contact .muted,.line .lbl{color:#000}
+  .line,.line + .line{border-color:var(--rule)}
+}
 </style>
 </head>
-<body>
+<body class="loading">
 
 <header class="bar">
   <div class="wrap">
-    <a class="mark" href="#top" aria-label="Sudarno Lamhot, back to top">
+    <a class="mark" href="#top" aria-label="Back to top">
       <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 17h22M11 11l12 12M23 11 11 23" stroke="var(--flow)" stroke-width="2.4" stroke-linecap="round"/></svg>
-      Sudarno Lamhot
+      <span data-bind="site.name">Sudarno Lamhot</span>
     </a>
-    <nav class="links" aria-label="Sections">
-      <a href="#career">Career</a>
-      <a href="#capabilities">Capabilities</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <nav class="links" aria-label="Sections" id="nav"></nav>
     <button class="iconbtn" id="themeBtn" aria-label="Switch colour theme" title="Switch colour theme">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
     </button>
@@ -239,230 +291,86 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="status load"><i></i>Available for UAE / GCC deployment, onshore or offshore</div>
-        <h1 class="load d1">Sudarno<br>Lamhot</h1>
-        <div class="role load d2">IT infrastructure, data center &amp; ICT operations engineer</div>
-        <p class="pitch load d2">Ten years keeping critical systems running around the clock, from production-line IT at Suzuki to building and operating Tier III and Tier IV data centers for Alibaba Cloud. I work to procedure, supervise contractors on live sites, and treat uptime and safety as the same job.</p>
-        <div class="ctas load d3">
-          <a class="btn primary" href="https://wa.me/971542132435" target="_blank" rel="noopener">Message on WhatsApp (UAE)</a>
-          <a class="btn ghost" href="#projects">See project work</a>
-        </div>
+        <div class="status load needs-data" id="status"><i></i><span></span></div>
+        <h1 class="load d1" id="heroName">Sudarno<br>Lamhot</h1>
+        <div class="role load d2" data-bind="site.role">IT infrastructure, data center &amp; ICT operations engineer</div>
+        <p class="pitch load d2 needs-data" id="pitch"></p>
+        <div class="ctas load d3 needs-data" id="ctas"></div>
       </div>
-      <aside class="datasheet load d4" aria-label="Profile summary">
-        <div class="ds-head"><span>Engineer datasheet</span><span>Rev. 2026</span></div>
-        <dl>
-          <dt>Experience</dt><dd>10+ years, IT &amp; infrastructure</dd>
-          <dt>Facilities</dt><dd>Tier III &amp; Tier IV data centers</dd>
-          <dt>Operations</dt><dd>24/7 shift, SLA-driven</dd>
-          <dt>Interconnect</dt><dd>Links to 10 countries</dd>
-          <dt>Current</dt><dd>InfiniSoft Technology DMCC, UAE</dd>
-          <dt>Education</dt><dd>B.Eng. Information Engineering</dd>
-        </dl>
+      <aside class="datasheet load d4 needs-data" aria-label="Profile summary">
+        <div class="ds-head"><span>Engineer datasheet</span><span id="rev"></span></div>
+        <dl id="datasheet"></dl>
       </aside>
     </div>
   </section>
 
-  <section class="block" id="career">
+  <div id="failBox" hidden></div>
+
+  <section class="block" id="career" data-sec="career">
     <div class="wrap">
-      <div class="sec-head">
-        <h2>Career line</h2>
-        <p class="muted">Each stop added a layer: field support, enterprise applications, plant infrastructure, hyperscale facilities, cloud security. Select a stop to see the work.</p>
-      </div>
-      <ol class="pipe" role="tablist" aria-label="Career stops" id="pipe"><span class="flow" aria-hidden="true"></span></ol>
+      <div class="sec-head"><h2></h2><p class="muted"></p></div>
+      <ol class="pipe" role="tablist" aria-label="Career stops" id="pipe"></ol>
       <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+      <div class="print-only" id="printCareer"></div>
     </div>
   </section>
 
-  <section class="block" id="capabilities">
+  <section class="block" id="capabilities" data-sec="capabilities">
     <div class="wrap">
-      <div class="sec-head">
-        <h2>What I bring to an operating site</h2>
-        <p class="muted">The habits that keep a data center online are the same ones a plant, a rig or a control room depends on.</p>
-      </div>
+      <div class="sec-head"><h2></h2><p class="muted"></p></div>
       <div class="caps" id="caps"></div>
     </div>
   </section>
 
-  <section class="block" id="projects">
+  <section class="block" id="projects" data-sec="projects">
     <div class="wrap">
-      <div class="sec-head">
-        <h2>Project work</h2>
-        <p class="muted">Four engagements that show how I work under pressure, with contractors, and to standard.</p>
-      </div>
+      <div class="sec-head"><h2></h2><p class="muted"></p></div>
       <div class="proj" id="proj"></div>
     </div>
   </section>
 
-  <section class="block" id="skills">
+  <section class="block" id="skills" data-sec="skills">
     <div class="wrap">
-      <div class="sec-head">
-        <h2>Technical toolkit</h2>
-        <p class="muted">Filter by area to see the systems I have installed, configured or operated in production.</p>
+      <div class="sec-head"><h2></h2><p class="muted"></p></div>
+      <div class="skill-tools">
+        <div class="filters" id="filters" role="group" aria-label="Filter skills"></div>
+        <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="skillSearch" placeholder="Search a system, e.g. Cisco" aria-label="Search skills"></label>
       </div>
-      <div class="filters" id="filters" role="group" aria-label="Filter skills"></div>
-      <div class="skills" id="skillList"></div>
+      <div class="skills" id="skillList" aria-live="polite"></div>
     </div>
   </section>
 
-  <section class="block" id="education">
+  <section class="block" id="education" data-sec="education">
     <div class="wrap">
-      <div class="sec-head"><h2>Education &amp; training</h2><p class="muted">Engineering degree plus hands-on courses; offshore safety certification (BOSIET, H2S) can be completed on request.</p></div>
+      <div class="sec-head"><h2></h2><p class="muted"></p></div>
       <div class="edu" id="edu"></div>
+      <div class="certs" id="certs"></div>
     </div>
   </section>
 </main>
 
-<section class="contact" id="contact">
+<section class="contact" id="contact" data-sec="contact">
   <div class="wrap">
-    <h2>Let's talk about your next site</h2>
-    <p class="muted" style="margin-top:14px">Reachable on WhatsApp or phone in both time zones. Full CV and references on request.</p>
-    <div class="lines">
-      <div class="line">
-        <div class="lbl"><span>UAE mobile</span><time id="clockUae">--:--</time></div>
-        <div class="val">+971 54 213 2435</div>
-        <div class="acts">
-          <a class="btn primary" href="https://wa.me/971542132435" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn" href="tel:+971542132435">Call</a>
-          <button class="btn" data-copy="+971 54 213 2435">Copy</button>
-        </div>
-      </div>
-      <div class="line">
-        <div class="lbl"><span>Indonesia mobile</span><time id="clockIdn">--:--</time></div>
-        <div class="val">+62 822 4964 769</div>
-        <div class="acts">
-          <a class="btn primary" href="https://wa.me/628224964769" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn" href="tel:+628224964769">Call</a>
-          <button class="btn" data-copy="+62 822 4964 769">Copy</button>
-        </div>
-      </div>
-      <div class="line">
-        <div class="lbl"><span>Email</span></div>
-        <div class="val">darnoey@yahoo.com</div>
-        <div class="acts">
-          <a class="btn primary" href="mailto:darnoey@yahoo.com?subject=Opportunity%20for%20Sudarno%20Lamhot">Send email</a>
-          <a class="btn" href="mailto:darnoey@yahoo.com?subject=CV%20request">Request CV</a>
-          <button class="btn" data-copy="darnoey@yahoo.com">Copy</button>
-        </div>
-      </div>
-    </div>
+    <h2></h2>
+    <p class="muted" style="margin-top:14px"></p>
+    <div class="lines" id="lines"></div>
   </div>
 </section>
 
-<footer><div class="wrap"><span>© <span id="yr"></span> Sudarno Lamhot · Bekasi, Indonesia</span><span>Indonesian national · Open to rotation</span></div></footer>
+<footer><div class="wrap"><span id="foot1"></span><span><span id="foot2"></span><span class="upd" id="updated"></span></span></div></footer>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
 /* ============================================================
-   EDIT YOUR CONTENT HERE — everything on the page comes from
-   this PROFILE object. Change text, add a role or project,
-   save, and push to GitHub: the site updates automatically.
+   Semua isi halaman datang dari data/profile.json.
+   Ubah isi lewat admin.html (form + simpan langsung ke GitHub)
+   atau edit file JSON-nya. File ini tidak perlu disentuh.
    ============================================================ */
-const PROFILE = {
-  career: [
-    { id:"alfa", yr:"2011", short:"Alfamart", title:"IT Store Support", company:"PT Sumber Alfaria Trijaya Tbk (Alfamart)",
-      period:"Nov 2011 – Dec 2012", place:"Bekasi, Indonesia", icon:"store",
-      relevance:"Support across many remote, unmanned-hours sites, the same pattern as field and wellsite IT.",
-      groups:[{ items:[
-        "Implemented POS systems for retail stores across the Bekasi area.",
-        "Troubleshot PCs and all in-store IT devices; configured TCP/IP networking.",
-        "Supported stores remotely and maintained store transaction databases."]}]},
-    { id:"ifs", yr:"2013", short:"IFS Solutions", title:"Application Engineer", company:"PT IFS Solutions Indonesia",
-      period:"Jan 2013 – Jul 2014", place:"Jakarta, Indonesia", icon:"app",
-      relevance:"On-site ERP rollout for asset-intensive clients; comfortable at the client's site and on their terms.",
-      groups:[{ items:[
-        "Implemented IFS ERP modules on client sites.",
-        "Managed database backups for client environments."]}]},
-    { id:"suzuki", yr:"2014", short:"Suzuki", title:"IT Technical DBA & Operations", company:"PT Suzuki Indomobil Motor",
-      period:"Sep 2014 – Nov 2020", place:"Bekasi, Indonesia", icon:"factory",
-      relevance:"Six years keeping a running production plant online: servers, networks and floor applications.",
-      groups:[
-        { label:"IT infrastructure", items:[
-          "Installed and managed DNS, DHCP and mail servers; administered Windows Active Directory.",
-          "Built virtual servers on VMware vSphere, Hyper-V, OpenVZ and VirtualBox.",
-          "Installed material handling and production process applications on the plant floor.",
-          "Configured Cisco switching and managed ISP links from Telkom, Moratel, Biznet and First Media.",
-          "Led the building operations support team; deployed Trend Micro endpoint security."]},
-        { label:"IT service management", items:[
-          "Single point of contact and escalation for incidents, requests and problems across all departments.",
-          "Kept the asset register for notebooks, servers, switches, routers, software and licenses.",
-          "Managed vendors and reported weekly and monthly to the IT Manager."]}]},
-    { id:"alibaba", yr:"2021", short:"Alibaba Cloud", title:"Data Center Engineer", company:"PT Alibaba Cloud Indonesia",
-      period:"Jan 2021 – Oct 2021", place:"Indonesia", icon:"server",
-      relevance:"Control-room monitoring, MOP-based maintenance and contractor control in a Tier III/IV facility.",
-      groups:[
-        { label:"Operations, 24/7 shift", items:[
-          "Resolved priority tickets within SLA: delivery, repair, relocation, network and server.",
-          "Monitored power, temperature, humidity, HVAC/CRAC, fire suppression and extinguishers.",
-          "Monitored Cisco, Huawei and Ruijie core switches, Juniper routers and storage.",
-          "Supported end-to-end links to data centers in 10 countries.",
-          "Prepared audit documents and a Method of Procedure for every maintenance job."]},
-        { label:"Construction project support", items:[
-          "Supervised contractors installing raised floors, racks, trunking and fire safety equipment.",
-          "Installed and A–Z tested UTP, LC and MPO cabling to servers, network devices and POP.",
-          "Mounted equipment and enforced labeling and cabling standards; tracked logistics ETAs."]}]},
-    { id:"trix", yr:"2021", short:"InfiniSoft", title:"IT Engineer", company:"InfiniSoft Technology DMCC (formerly PT Trix, Singapore)",
-      period:"Nov 2021 – Present", place:"UAE", icon:"shield",
-      relevance:"Security monitoring and access control, directly transferable to IT/OT cyber security.",
-      groups:[{ items:[
-        "Monitored security activity with Grafana dashboards and T-Pot honeypot rules.",
-        "Operated AWS services, managing memory allocation and cluster health.",
-        "Controlled domain security and access through Cloudflare.",
-        "Built and ran CI/CD pipelines; tested and maintained web apps in JavaScript and Node.js."]}]},
-    { id:"next", yr:"Next", short:"Oil & Gas", title:"Your ICT / infrastructure team", company:"Oil & Gas operations, UAE / GCC",
-      period:"Available now", place:"Onshore, offshore or rotational", icon:"rig", next:true,
-      relevance:"Ready to mobilise. Safety certification (BOSIET, H2S) can be arranged before deployment.",
-      groups:[{ items:[
-        "Field, plant and offshore network and server support.",
-        "Control room and data center utility monitoring.",
-        "Contractor supervision and structured cabling to standard.",
-        "IT service management and IT/OT security monitoring."]}]}
-  ],
-  capabilities: [
-    { icon:"clock", title:"24/7 critical operations", text:"Shift work in a live facility, triaging tickets by priority and closing them inside SLA.", site:"Fits: control rooms, plant IT, operations support" },
-    { icon:"doc", title:"Work to procedure", text:"Method of Procedure written for every maintenance job, audit documents kept current, standards enforced.", site:"Fits: permit-to-work culture, QA/QC, audits" },
-    { icon:"hard", title:"Contractor supervision", text:"Escorted and guided vendors through installation, repair and relocation on a live data center floor.", site:"Fits: shutdowns, construction, commissioning" },
-    { icon:"net", title:"Networks and structured cabling", text:"Core switching and routing across four vendors; fiber and copper installed and tested end to end.", site:"Fits: field telecom, LAN/WAN, site connectivity" },
-    { icon:"bolt", title:"Utility and environment monitoring", text:"Power, HVAC/CRAC, humidity, fire suppression and extinguishers checked every shift.", site:"Fits: equipment rooms, server shelters, UPS rooms" },
-    { icon:"shield", title:"Security and service management", text:"Threat monitoring, access control and full ITSM: incidents, problems, assets, vendors, reporting.", site:"Fits: IT/OT security, help desk leadership" }
-  ],
-  projects: [
-    { yr:"2021", title:"Tier III / Tier IV data center build", sub:"Alibaba Cloud Indonesia · construction project support",
-      context:"Greenfield hyperscale facilities had to be delivered on schedule and to Alibaba's global build standard.",
-      did:"Supervised flooring, racking, trunking and fire safety contractors; installed and A–Z tested UTP, LC and MPO cabling; mounted network and server equipment.",
-      result:"Installations, labeling and cabling handed over to standard, with all material received in good condition and logistics tracked to ETA.",
-      tags:["Commissioning","Contractor control","Fiber MPO/LC","QA/QC"] },
-    { yr:"2021", title:"24/7 data center operations & global interconnect", sub:"Alibaba Cloud Indonesia · operations engineer",
-      context:"A live cloud region with strict SLAs and links to data centers in 10 countries.",
-      did:"Ran shifts covering tickets, utilities and core network monitoring; prepared a Method of Procedure and audit pack for each maintenance job.",
-      result:"Tickets closed by priority within SLA and every maintenance activity documented for audit.",
-      tags:["SLA","MOP","HVAC/CRAC","Cisco · Huawei · Juniper"] },
-    { yr:"2014–20", title:"Plant IT infrastructure & service desk", sub:"PT Suzuki Indomobil Motor · IT technical DBA & operations",
-      context:"An automotive plant where IT downtime stops the production line.",
-      did:"Managed servers, Active Directory, virtualization, Cisco switching and four ISP links; ran incident, request and problem management for every department.",
-      result:"Six years as the plant's single point of escalation, with monthly reports driving continuous improvement.",
-      tags:["Production support","ITSM","Virtualization","Multi-ISP"] },
-    { yr:"2021–now", title:"Cloud security monitoring", sub:"InfiniSoft Technology DMCC, UAE (formerly PT Trix) · IT engineer",
-      context:"Client web platforms running on AWS needed monitoring, access control and reliable releases.",
-      did:"Built Grafana and T-Pot monitoring, managed Cloudflare access policies, operated AWS clusters and maintained CI/CD.",
-      result:"Security activity visible on dashboards and releases shipped through an automated pipeline.",
-      tags:["AWS","Cloudflare","Grafana","T-Pot","CI/CD"] }
-  ],
-  skills: [
-    ["Network","Cisco Catalyst switching"],["Network","Huawei & Ruijie core switches"],["Network","Juniper routing"],["Network","TCP/IP, LAN, DNS, DHCP"],["Network","Fiber LC / MPO & UTP"],["Network","Cisco IP telephony"],["Network","Motorola wireless controllers"],
-    ["Systems","Windows Server"],["Systems","Active Directory"],["Systems","VMware vSphere"],["Systems","Hyper-V"],["Systems","OpenVZ"],["Systems","Ubuntu Linux"],
-    ["Cloud & security","AWS"],["Cloud & security","Cloudflare"],["Cloud & security","Grafana"],["Cloud & security","T-Pot"],["Cloud & security","Trend Micro"],
-    ["Data","Oracle 10g"],["Data","SQL Server"],["Data","MySQL"],["Data","Backup & recovery"],
-    ["Operations","ITSM: incident, problem, request"],["Operations","Method of Procedure"],["Operations","Asset & license inventory"],["Operations","Vendor management"],["Operations","HVAC/CRAC & power monitoring"],
-    ["Development","JavaScript & Node.js"],["Development","PHP"],["Development","Java"],["Development","CI/CD"],["Development","HTML & CSS"]
-  ],
-  education: [
-    { yr:"2007–2011", title:"B.Eng. Information Engineering", where:"Universitas Gunadarma" },
-    { yr:"2010", title:"MIDlet Java programming for mobile", where:"Gunadarma" },
-    { yr:"2009", title:"Digital video production", where:"Gunadarma" }
-  ]
-};
+const DATA_URL = "data/profile.json";
+const PREVIEW = new URLSearchParams(location.search).has("preview");
 
-/* ------------- icons (line style, 24px grid) ------------- */
+/* ---------- icons (line style, 24px grid) ---------- */
 const ICON = {
   store:'<path d="M3 9l1.5-5h15L21 9M4 9v11h16V9M3 9h18M9 20v-6h6v6"/>',
   app:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h3M8 16h6"/>',
@@ -474,110 +382,312 @@ const ICON = {
   doc:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/>',
   hard:'<path d="M3 18h18M5 18v-3a7 7 0 0 1 14 0v3M10 8V5h4v3"/>',
   net:'<circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v5M12 12l-6 5.5M12 12l6 5.5"/>',
-  bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>'
+  bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+  cloud:'<path d="M7 18a4 4 0 0 1-.6-7.96A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z"/>',
+  fiber:'<path d="M3 12h4l2-5 3 10 2-5h7"/>'
 };
 const svg = (k,s=24)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[k]||""}</svg>`;
-const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const $ = id => document.getElementById(id);
 
-/* ------------- career line ------------- */
-const pipe = document.getElementById("pipe"), panel = document.getElementById("panel");
-PROFILE.career.forEach((r,i)=>{
-  const li=document.createElement("li");
-  li.innerHTML=`<button class="node${r.next?" next":""}" role="tab" id="tab-${r.id}" aria-controls="panel" aria-selected="false" data-i="${i}">
-      <span class="valve">${svg(r.icon,34)}</span>
-      <span class="txt"><span class="yr">${esc(r.yr)}</span><span class="co">${esc(r.short)}</span></span></button>`;
-  pipe.appendChild(li);
-});
-const nodes=[...pipe.querySelectorAll(".node")];
-function show(i,focus){
-  const r=PROFILE.career[i];
-  nodes.forEach((n,j)=>{n.setAttribute("aria-selected",j===i);n.tabIndex=j===i?0:-1});
-  if(focus) nodes[i].focus();
-  panel.setAttribute("aria-labelledby","tab-"+r.id);
-  panel.innerHTML=`<div class="meta"><h3>${esc(r.title)}</h3><div>${esc(r.company)}</div>
-      <div class="when">${esc(r.period)}</div><div class="muted">${esc(r.place)}</div>
-      <div class="rel"><b>${r.next?"What I'm looking for":"Why it matters in Oil & Gas"}</b>${esc(r.relevance)}</div></div>
-    <ul>${r.groups.map(g=>(g.label?`<li class="group">${esc(g.label)}</li>`:"")+g.items.map(t=>`<li>${esc(t)}</li>`).join("")).join("")}</ul>`;
+/* ---------- derived values: computed, never typed by hand ---------- */
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const WORDS = ["Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen","Twenty"];
+const now = new Date();
+const nowYM = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}`;
+const ym = s => { const [y,m] = (s||"").split("-").map(Number); return y ? {y, m:m||1} : null; };
+const months = (a,b) => { const s = ym(a), e = ym(b||nowYM); return s && e ? (e.y-s.y)*12 + (e.m-s.m) + 1 : 0; };
+const fmtYM = s => { const d = ym(s); return d ? `${MON[d.m-1]} ${d.y}` : ""; };
+const dur = m => { const y = Math.floor(m/12), r = m%12; return [y && `${y} yr${y>1?"s":""}`, r && `${r} mo${r>1?"s":""}`].filter(Boolean).join(" ") || "1 mo"; };
+const isNow = r => !r.next && r.start && !r.end;
+const period = r => r.next ? "Available now" : `${fmtYM(r.start)} – ${r.end ? fmtYM(r.end) : "Present"}`;
+const spanLabel = p => {
+  if (p.label) return p.label;
+  const s = ym(p.start), e = p.end ? ym(p.end) : null;
+  if (!s) return "";
+  if (!p.end) return `${s.y}–now`;
+  return s.y === e.y ? `${s.y}` : `${s.y}–${String(e.y).slice(2)}`;
+};
+
+function derive(d){
+  // Merge overlapping periods so parallel roles are not counted twice.
+  const spans = d.career.filter(r=>!r.next && r.start).map(r=>{const s=ym(r.start), e=ym(r.end||nowYM); return [s.y*12+s.m, e.y*12+e.m]}).sort((a,b)=>a[0]-b[0]);
+  let total = 0, cur = null;
+  for (const [s,e] of spans){ if(!cur || s > cur[1]+1){ if(cur) total += cur[1]-cur[0]+1; cur=[s,e]; } else cur[1]=Math.max(cur[1],e); }
+  if (cur) total += cur[1]-cur[0]+1;
+  const years = Math.floor(total/12);
+  const current = d.career.find(isNow);
+  const n = d.projects.length;
+  const t = {
+    years, yearsWord: (WORDS[years]||String(years)).toLowerCase(), YearsWord: WORDS[years]||String(years),
+    projectCount: n, ProjectCount: WORDS[n]||String(n),
+    current: current ? `${current.company.replace(/\s*\(.*\)\s*/,"")}, ${current.place}` : "Open to new role",
+    rev: d.updated ? new Date(d.updated).getFullYear() : now.getFullYear()
+  };
+  return { t, totalMonths: total, current };
 }
-nodes.forEach((n,i)=>{
-  n.addEventListener("click",()=>{show(i); if(matchMedia("(max-width:860px)").matches) panel.scrollIntoView({behavior:"smooth",block:"start"});});
-  n.addEventListener("keydown",e=>{
-    const k=e.key; let j=null;
-    if(k==="ArrowRight"||k==="ArrowDown") j=(i+1)%nodes.length;
-    if(k==="ArrowLeft"||k==="ArrowUp") j=(i-1+nodes.length)%nodes.length;
-    if(k==="Home") j=0; if(k==="End") j=nodes.length-1;
-    if(j!==null){e.preventDefault();show(j,true)}
+let T = {};
+const fill = s => String(s ?? "").replace(/\{(\w+)\}/g, (m,k) => k in T ? T[k] : m);
+
+/* ---------- render ---------- */
+let D = null, careerIdx = 0;
+
+function render(d){
+  D = d;
+  const dv = derive(d); T = dv.t;
+  document.body.classList.remove("loading");
+  $("failBox").hidden = true;
+
+  // head
+  document.title = fill(d.site.metaTitle || `${d.site.name} — ${d.site.role}`);
+  setMeta("description", fill(d.site.metaDescription));
+  document.querySelectorAll('[data-bind="site.name"]').forEach(e=>e.textContent=d.site.name);
+  document.querySelectorAll('[data-bind="site.role"]').forEach(e=>e.textContent=d.site.role);
+  const parts = d.site.name.trim().split(/\s+/);
+  $("heroName").innerHTML = parts.length > 1 ? `${esc(parts.slice(0,-1).join(" "))}<br>${esc(parts.at(-1))}` : esc(d.site.name);
+
+  // sections: title + intro, hide empty ones, build nav
+  const has = {career:d.career.length, capabilities:d.capabilities.length, projects:d.projects.length, skills:d.skills.length, education:d.education.length+(d.certifications||[]).length, contact:(d.contact?.lines||[]).length};
+  document.querySelectorAll("[data-sec]").forEach(sec=>{
+    const k = sec.dataset.sec, s = d.sections?.[k] || {};
+    sec.hidden = !has[k];
+    sec.querySelector("h2").textContent = fill(s.title);
+    sec.querySelector("p.muted").textContent = fill(s.intro);
   });
+  const navKeys = ["career","capabilities","projects","skills","contact"].filter(k=>has[k]);
+  $("nav").innerHTML = navKeys.map(k=>`<a href="#${k}">${esc(k[0].toUpperCase()+k.slice(1))}</a>`).join("");
+  watchNav(navKeys);
+
+  // hero
+  const h = d.hero || {};
+  $("status").classList.toggle("hold", !h.available);
+  $("status").querySelector("span").textContent = h.available ? h.status : (h.statusUnavailable || h.status);
+  $("pitch").textContent = fill(h.pitch);
+  const wa = (d.contact?.lines||[]).find(l=>l.type==="phone" && l.primary) || (d.contact?.lines||[]).find(l=>l.type==="phone");
+  $("ctas").innerHTML =
+    (wa ? `<a class="btn primary" href="https://wa.me/${digits(wa.value)}" target="_blank" rel="noopener">${esc(h.primaryCtaLabel||"Message on WhatsApp")}</a>` : "") +
+    (h.secondaryCta?.label ? `<a class="btn" href="${esc(h.secondaryCta.href||"#projects")}">${esc(h.secondaryCta.label)}</a>` : "") +
+    `<button class="btn" type="button" data-print>Save CV as PDF</button>`;
+  $("rev").textContent = `Rev. ${T.rev}`;
+  $("datasheet").innerHTML = (d.datasheet||[]).map(r=>`<dt>${esc(fill(r.label))}</dt><dd>${esc(fill(r.value))}</dd>`).join("");
+
+  renderCareer(d);
+  $("caps").innerHTML = d.capabilities.map(c=>`<div class="cap"><h3>${svg(c.icon,26)}${esc(c.title)}</h3><p>${esc(fill(c.text))}</p>${c.site?`<div class="site">${esc(c.site)}</div>`:""}</div>`).join("");
+  renderProjects(d);
+  renderSkills(d);
+  renderEdu(d);
+  renderContact(d);
+
+  $("foot1").textContent = `© ${now.getFullYear()} ${d.site.name} · ${d.site.location}`;
+  $("foot2").textContent = d.site.footerNote || "";
+  showUpdated(d);
+  jsonLd(d, dv);
+}
+
+function setMeta(name, content){ if(!content) return; let m=document.querySelector(`meta[name="${name}"]`); if(!m){m=document.createElement("meta");m.name=name;document.head.appendChild(m)} m.content=content; }
+const digits = s => String(s).replace(/\D/g,"");
+
+/* career line */
+function renderCareer(d){
+  const pipe = $("pipe"), list = d.career;
+  pipe.style.setProperty("--n", list.length);
+  pipe.innerHTML = `<span class="flow" aria-hidden="true"></span>` + list.map((r,i)=>`<li><button class="node${r.next?" next":""}${isNow(r)?" now":""}" role="tab" id="tab-${esc(r.id)}" aria-controls="panel" aria-selected="false" data-i="${i}">
+      <span class="valve">${svg(r.icon,34)}</span>
+      <span class="txt"><span class="yr">${r.next?"Next":esc((ym(r.start)||{}).y||"")}</span><span class="co">${esc(r.short||r.company)}</span></span></button></li>`).join("");
+  const fromHash = list.findIndex(r=>location.hash===`#career-${r.id}`);
+  const feat = list.findIndex(r=>r.featured);
+  const cur = list.findIndex(isNow);
+  showCareer(fromHash>=0 ? fromHash : feat>=0 ? feat : cur>=0 ? cur : 0);
+  $("printCareer").innerHTML = list.filter(r=>!r.next).slice().reverse().map(r=>`<div class="pr-role"><h3>${esc(r.title)} · ${esc(r.company)}</h3>
+     <div class="muted">${esc(period(r))} (${dur(months(r.start,r.end))}) · ${esc(r.place)}</div>
+     <ul>${r.groups.flatMap(g=>g.items).map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`).join("");
+}
+function showCareer(i, focus){
+  const list = D.career; careerIdx = i; const r = list[i]; if(!r) return;
+  const nodes = [...$("pipe").querySelectorAll(".node")];
+  nodes.forEach((n,j)=>{n.setAttribute("aria-selected",j===i);n.tabIndex=j===i?0:-1});
+  if (focus) nodes[i].focus();
+  const panel = $("panel");
+  panel.setAttribute("aria-labelledby","tab-"+r.id);
+  panel.innerHTML = `<div class="meta"><h3>${esc(r.title)}</h3><div>${esc(r.company)}</div>
+      <div class="when">${esc(period(r))}${r.next?"":`<span class="dur">· ${dur(months(r.start,r.end))}</span>`}</div><div class="muted">${esc(r.place)}</div>
+      ${r.relevance?`<div class="rel"><b>${r.next?"What I’m looking for":"Why it matters in Oil & Gas"}</b>${esc(fill(r.relevance))}</div>`:""}</div>
+    <ul>${(r.groups||[]).map(g=>(g.label?`<li class="group">${esc(g.label)}</li>`:"")+(g.items||[]).map(t=>`<li>${esc(fill(t))}</li>`).join("")).join("")}</ul>
+    <div class="stepper"><button type="button" data-step="-1" ${i===0?"disabled":""}>‹ ${esc(list[i-1]?.short||"Earlier")}</button><button type="button" data-step="1" ${i===list.length-1?"disabled":""}>${esc(list[i+1]?.short||"Later")} ›</button></div>`;
+}
+$("pipe").addEventListener("click", e=>{const n=e.target.closest(".node"); if(!n) return; showCareer(+n.dataset.i); if(matchMedia("(max-width:860px)").matches) $("panel").scrollIntoView({behavior:"smooth",block:"start"});});
+$("panel").addEventListener("click", e=>{const b=e.target.closest("[data-step]"); if(b) showCareer(careerIdx + +b.dataset.step);});
+$("pipe").addEventListener("keydown", e=>{
+  const n = D.career.length; let j=null;
+  if(["ArrowRight","ArrowDown"].includes(e.key)) j=(careerIdx+1)%n;
+  if(["ArrowLeft","ArrowUp"].includes(e.key)) j=(careerIdx-1+n)%n;
+  if(e.key==="Home") j=0; if(e.key==="End") j=n-1;
+  if(j!==null){e.preventDefault();showCareer(j,true)}
 });
-show(3); // open on Alibaba Cloud: the strongest story
 
-/* ------------- capabilities ------------- */
-document.getElementById("caps").innerHTML=PROFILE.capabilities.map(c=>
-  `<div class="cap"><h3>${svg(c.icon,26)}${esc(c.title)}</h3><p>${esc(c.text)}</p><div class="site">${esc(c.site)}</div></div>`).join("");
-
-/* ------------- projects ------------- */
-document.getElementById("proj").innerHTML=PROFILE.projects.map((p,i)=>
-  `<details${i===0?" open":""}><summary><span class="yr">${esc(p.yr)}</span>
+/* projects: deep-linkable via #p-<id> */
+function renderProjects(d){
+  const list = d.projects; // order = order in the JSON (reorder with ↑ ↓ in admin.html)
+  const target = location.hash.startsWith("#p-") ? location.hash.slice(3) : null;
+  $("proj").innerHTML = list.map((p,i)=>`<details id="p-${esc(p.id)}"${(target ? p.id===target : i===0)?" open":""}><summary><span class="yr">${esc(spanLabel(p))}</span>
      <h3>${esc(p.title)}<span class="sub">${esc(p.sub)}</span></h3>
      <span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></span></summary>
    <div class="body"><span class="spacer"></span>
-     <div><h4>Situation</h4><p>${esc(p.context)}</p></div>
-     <div><h4>What I did</h4><p>${esc(p.did)}</p></div>
-     <div><h4>Outcome</h4><p>${esc(p.result)}</p></div>
-     <div class="tags">${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div></div></details>`).join("");
-
-/* ------------- skills filter ------------- */
-const cats=["All",...new Set(PROFILE.skills.map(s=>s[0]))];
-const fWrap=document.getElementById("filters"), sWrap=document.getElementById("skillList");
-sWrap.innerHTML=PROFILE.skills.map(s=>`<span class="skill" data-cat="${esc(s[0])}">${esc(s[1])}</span>`).join("");
-fWrap.innerHTML=cats.map((c,i)=>`<button aria-pressed="${i===0}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
-fWrap.addEventListener("click",e=>{
-  const b=e.target.closest("button"); if(!b) return;
-  fWrap.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));
-  const c=b.dataset.cat;
-  sWrap.querySelectorAll(".skill").forEach(s=>s.classList.toggle("dim",c!=="All"&&s.dataset.cat!==c));
+     <div><h4>Situation</h4><p>${esc(fill(p.context))}</p></div>
+     <div><h4>What I did</h4><p>${esc(fill(p.did))}</p></div>
+     <div><h4>Outcome</h4><p>${esc(fill(p.result))}</p></div>
+     <div class="foot">${(p.tags||[]).map(t=>`<button type="button" class="tag" data-tag="${esc(t)}" title="Find related skills">${esc(t)}</button>`).join("")}
+       <button type="button" class="linkbtn" data-plink="${esc(p.id)}">Copy link to this project</button></div></div></details>`).join("");
+  if (target){ const el=$("p-"+target); if(el) requestAnimationFrame(()=>{el.scrollIntoView({block:"start"}); el.classList.add("flash");}); }
+}
+$("proj").addEventListener("click", e=>{
+  const l = e.target.closest("[data-plink]");
+  if (l){ copy(`${location.origin}${location.pathname}#p-${l.dataset.plink}`, "Project link copied"); return; }
+  const t = e.target.closest("[data-tag]");
+  if (t){ const q = t.dataset.tag.split(/[·\/,]/)[0].trim(); $("skillSearch").value = q; skillState.q = q; skillState.cat = "All"; applySkills(); $("skills").scrollIntoView({behavior:"smooth"}); }
 });
 
-/* ------------- education ------------- */
-document.getElementById("edu").innerHTML=PROFILE.education.map(e=>
-  `<div><div class="yr">${esc(e.yr)}</div><h3>${esc(e.title)}</h3><div class="muted">${esc(e.where)}</div></div>`).join("");
+/* skills: category filter + search with live counts */
+const skillState = { cat:"All", q:"" };
+function renderSkills(d){
+  const flat = d.skills.flatMap(g=>(g.items||[]).map(n=>({cat:g.category, name:n})));
+  $("skillList").innerHTML = flat.map(s=>`<span class="skill" data-cat="${esc(s.cat)}" data-name="${esc(s.name)}">${esc(s.name)}</span>`).join("") + `<p class="empty" id="skillEmpty" hidden></p>`;
+  const cats = [["All", flat.length], ...d.skills.map(g=>[g.category,(g.items||[]).length])];
+  if (!cats.some(c=>c[0]===skillState.cat)) skillState.cat = "All";
+  $("filters").innerHTML = cats.map(([c,n])=>`<button type="button" aria-pressed="${c===skillState.cat}" data-cat="${esc(c)}">${esc(c)}<span>${n}</span></button>`).join("");
+  applySkills();
+}
+function applySkills(){
+  const q = skillState.q.trim().toLowerCase(); let shown = 0;
+  $("filters").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cat===skillState.cat));
+  $("skillList").querySelectorAll(".skill").forEach(s=>{
+    const name = s.dataset.name, hit = (skillState.cat==="All"||s.dataset.cat===skillState.cat) && (!q || name.toLowerCase().includes(q) || s.dataset.cat.toLowerCase().includes(q));
+    s.classList.toggle("dim", !hit); if (hit) shown++;
+    const i = q ? name.toLowerCase().indexOf(q) : -1;
+    s.innerHTML = i>=0 ? esc(name.slice(0,i))+`<mark>${esc(name.slice(i,i+q.length))}</mark>`+esc(name.slice(i+q.length)) : esc(name);
+  });
+  const em = $("skillEmpty"); em.hidden = shown>0; em.textContent = `No listed system matches “${skillState.q}”. Ask me directly; the list covers production work only.`;
+}
+$("filters").addEventListener("click", e=>{const b=e.target.closest("button"); if(!b) return; skillState.cat=b.dataset.cat; applySkills();});
+$("skillSearch").addEventListener("input", e=>{skillState.q=e.target.value; applySkills();});
 
-/* ------------- live clocks for both numbers ------------- */
+/* education + certifications */
+function renderEdu(d){
+  $("edu").innerHTML = d.education.map(e=>`<div><div class="yr">${esc(e.yr)}</div><h3>${esc(e.title)}</h3><div class="muted">${esc(e.where)}</div></div>`).join("");
+  const label = {done:"Certified", progress:"In progress", "on-request":"On request"};
+  $("certs").innerHTML = (d.certifications||[]).map(c=>`<div class="cert"><span class="st ${esc(c.status)}">${esc(label[c.status]||c.status)}${c.year?` ${esc(c.year)}`:""}</span><div><b>${esc(c.name)}</b>${c.note?`<small>${esc(c.note)}</small>`:""}</div></div>`).join("");
+}
+
+/* contact lines: actions generated from type */
+function renderContact(d){
+  const lines = d.contact?.lines || [];
+  $("lines").style.setProperty("--n", Math.min(lines.length,3)||1);
+  $("lines").innerHTML = lines.map(l=>{
+    const acts = l.type==="email"
+      ? `<a class="btn primary" href="mailto:${esc(l.value)}?subject=${encodeURIComponent("Opportunity for "+d.site.name)}">Send email</a>
+         <a class="btn" href="mailto:${esc(l.value)}?subject=${encodeURIComponent("CV request")}">Request CV</a>`
+      : `<a class="btn primary" href="https://wa.me/${digits(l.value)}" target="_blank" rel="noopener">WhatsApp</a>
+         <a class="btn" href="tel:+${digits(l.value)}">Call</a>`;
+    return `<div class="line"><div class="lbl"><span>${esc(l.label)}</span>${l.tz?`<time data-tz="${esc(l.tz)}" data-city="${esc(l.city||"")}">--:--</time>`:""}</div>
+      <div class="val">${esc(l.value)}</div><div class="acts">${acts}<button type="button" class="btn" data-copy="${esc(l.value)}">Copy</button></div></div>`;
+  }).join("");
+  tick();
+}
 function tick(){
-  const f=tz=>new Intl.DateTimeFormat("en-GB",{hour:"2-digit",minute:"2-digit",timeZone:tz}).format(new Date());
+  document.querySelectorAll("time[data-tz]").forEach(t=>{
+    try{
+      const parts = new Intl.DateTimeFormat("en-GB",{hour:"2-digit",minute:"2-digit",hour12:false,timeZone:t.dataset.tz}).formatToParts(new Date());
+      const hh = +parts.find(p=>p.type==="hour").value;
+      const off = hh < 8 || hh >= 22;
+      t.textContent = `${t.dataset.city} ${parts.map(p=>p.value).join("")}${off?" · likely asleep":""}`;
+      t.classList.toggle("off", off);
+    }catch(e){}
+  });
+}
+setInterval(tick, 30000);
+
+/* last updated: latest commit of the data file, falls back to the JSON stamp */
+async function showUpdated(d){
+  const fmt = iso => new Date(iso).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+  const el = $("updated");
+  if (d.updated) el.textContent = ` · Updated ${fmt(d.updated)}`;
+  if (PREVIEW || !d.site.repo || !location.hostname.endsWith("github.io")) return;
   try{
-    document.getElementById("clockUae").textContent="Dubai "+f("Asia/Dubai");
-    document.getElementById("clockIdn").textContent="Jakarta "+f("Asia/Jakarta");
+    const r = await fetch(`https://api.github.com/repos/${d.site.repo}/commits?path=${DATA_URL}&per_page=1`);
+    if (!r.ok) return;
+    const c = (await r.json())[0];
+    if (c) el.textContent = ` · Updated ${fmt(c.commit.committer.date)}`;
   }catch(e){}
 }
-tick(); setInterval(tick,30000);
-document.getElementById("yr").textContent=new Date().getFullYear();
 
-/* ------------- copy buttons ------------- */
-const toast=document.getElementById("toast"); let tt;
+/* structured data for search engines */
+function jsonLd(d, dv){
+  let s = $("ld"); if(!s){ s=document.createElement("script"); s.type="application/ld+json"; s.id="ld"; document.head.appendChild(s); }
+  const email = (d.contact?.lines||[]).find(l=>l.type==="email");
+  s.textContent = JSON.stringify({
+    "@context":"https://schema.org","@type":"Person", name:d.site.name, jobTitle:d.site.role, url:location.origin+location.pathname,
+    email: email ? `mailto:${email.value}` : undefined,
+    worksFor: dv.current ? {"@type":"Organization", name:dv.current.company} : undefined,
+    alumniOf: d.education[0] ? {"@type":"CollegeOrUniversity", name:d.education[0].where} : undefined,
+    address: {"@type":"PostalAddress", addressLocality:d.site.location},
+    knowsAbout: d.skills.flatMap(g=>g.items)
+  });
+}
+
+/* scroll spy, rebuilt when sections change */
+let spy;
+function watchNav(keys){
+  spy?.disconnect();
+  const links = [...document.querySelectorAll("nav.links a")];
+  spy = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting) links.forEach(a=>a.classList.toggle("on", a.getAttribute("href")==="#"+en.target.id)); }), {rootMargin:"-45% 0px -50% 0px"});
+  keys.forEach(k=>{const el=$(k); if(el) spy.observe(el)});
+}
+
+/* copy + toast + print */
+const toast = $("toast"); let tt;
 function say(m){toast.textContent=m;toast.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("show"),1800)}
-document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",async()=>{
-  const v=b.dataset.copy;
-  try{await navigator.clipboard.writeText(v);say("Copied "+v)}
-  catch(e){
-    const t=document.createElement("textarea");t.value=v;document.body.appendChild(t);t.select();
-    try{document.execCommand("copy");say("Copied "+v)}catch(_){say(v)} t.remove();
-  }
-}));
-
-/* ------------- scroll spy ------------- */
-const links=[...document.querySelectorAll("nav.links a")];
-const spy=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+en.target.id))}})},{rootMargin:"-45% 0px -50% 0px"});
-["career","capabilities","projects","skills","contact"].forEach(id=>{const el=document.getElementById(id); if(el) spy.observe(el)});
-
-/* ------------- theme toggle (remembered per browser) ------------- */
-const root=document.documentElement;
-try{const t=localStorage.getItem("sl-theme"); if(t) root.dataset.theme=t;}catch(e){}
-document.getElementById("themeBtn").addEventListener("click",()=>{
-  const dark=root.dataset.theme? root.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  root.dataset.theme=dark?"light":"dark";
-  try{localStorage.setItem("sl-theme",root.dataset.theme)}catch(e){}
+async function copy(v, msg){
+  try{ await navigator.clipboard.writeText(v); say(msg||"Copied "+v); }
+  catch(e){ const t=document.createElement("textarea"); t.value=v; document.body.appendChild(t); t.select(); try{document.execCommand("copy");say(msg||"Copied "+v)}catch(_){say(v)} t.remove(); }
+}
+document.addEventListener("click", e=>{
+  const c = e.target.closest("[data-copy]"); if (c) copy(c.dataset.copy);
+  if (e.target.closest("[data-print]")) window.print();
 });
+let openBefore = [];
+addEventListener("beforeprint", ()=>{ openBefore=[...document.querySelectorAll("#proj details")].map(x=>x.open); document.querySelectorAll("#proj details").forEach(x=>x.open=true); });
+addEventListener("afterprint", ()=>{ document.querySelectorAll("#proj details").forEach((x,i)=>x.open=openBefore[i]); });
+
+/* theme toggle */
+const root = document.documentElement;
+try{ const t=localStorage.getItem("sl-theme"); if(t) root.dataset.theme=t; }catch(e){}
+$("themeBtn").addEventListener("click", ()=>{
+  const dark = root.dataset.theme ? root.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try{ localStorage.setItem("sl-theme", root.dataset.theme); }catch(e){}
+});
+
+/* ---------- boot ---------- */
+function fail(err){
+  document.body.classList.remove("loading");
+  const local = location.protocol === "file:";
+  $("failBox").hidden = false;
+  $("failBox").innerHTML = `<div class="wrap"><div class="fail"><h3>Profile data did not load</h3>
+    <p>${local ? `Browsers block <code>${DATA_URL}</code> when the page is opened as a file. Run <code>python3 -m http.server</code> in this folder and open <code>http://localhost:8000</code>.`
+      : `Check that <code>${DATA_URL}</code> exists and is valid JSON. The GitHub Action “Validate profile data” shows the exact line.`}</p>
+    <p class="muted">${esc(err.message)}</p></div></div>`;
+  document.querySelectorAll("[data-sec]").forEach(s=>s.hidden=true);
+}
+if (PREVIEW){
+  // admin.html sends the draft here for a live preview
+  addEventListener("message", e=>{ if(e.origin===location.origin && e.data?.type==="profile-preview"){ try{ render(e.data.profile); }catch(err){ fail(err); } } });
+  parent.postMessage({type:"preview-ready"}, location.origin);
+} else {
+  fetch(`${DATA_URL}?v=${Date.now()}`, {cache:"no-store"})
+    .then(r=>{ if(!r.ok) throw new Error(`HTTP ${r.status} for ${DATA_URL}`); return r.json(); })
+    .then(render).catch(fail);
+}
+addEventListener("hashchange", ()=>{ if(!D) return; if(location.hash.startsWith("#p-")) renderProjects(D); const i=D.career.findIndex(r=>location.hash===`#career-${r.id}`); if(i>=0){ showCareer(i); $("career").scrollIntoView(); } });
 </script>
 </body>
 </html>

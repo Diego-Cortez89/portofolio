@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Editor portofolio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23F2A900%27/%3E%3Ctext x=%2732%27 y=%2743%27 font-family=%27Arial,sans-serif%27 font-size=%2728%27 font-weight=%27700%27 fill=%27%2314303D%27 text-anchor=%27middle%27%3ESL%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDF1F2; --surface:#FFFFFF; --ink:#14303D; --steel:#4F6772; --rule:#C5D1D6; --field:#F7F9FA;
+  --flow:#F2A900; --flow-ink:#7A5400; --ok:#1E8C5A; --bad:#B42318; --focus:#1F6FEB;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0E2129;--surface:#132C36;--ink:#E6EEF0;--steel:#9DB2BB;--rule:#28434E;--field:#0F2630;--flow:#F2B21C;--flow-ink:#F2B21C;--ok:#3DBB7F;--bad:#FF8A80;--focus:#6EA8FE;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0E2129;--surface:#132C36;--ink:#E6EEF0;--steel:#9DB2BB;--rule:#28434E;--field:#0F2630;--flow:#F2B21C;--flow-ink:#F2B21C;--ok:#3DBB7F;--bad:#FF8A80;--focus:#6EA8FE;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--body);display:flex;flex-direction:column}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit}
+a{color:inherit}
+
+/* top bar */
+.top{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--rule);background:var(--surface);flex-wrap:wrap}
+.top h1{font:700 22px/1 var(--display);margin:0;display:flex;align-items:center;gap:10px}
+.top h1 a{font:500 15px var(--body);color:var(--steel)}
+.pill{font-size:14px;font-weight:600;padding:5px 12px;border-radius:20px;background:var(--field);color:var(--steel);border:1px solid var(--rule)}
+.pill.dirty{color:var(--flow-ink);border-color:var(--flow);background:color-mix(in srgb,var(--flow) 14%,transparent)}
+.pill.err{color:var(--bad);border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,transparent);cursor:pointer}
+.pill.ok{color:var(--ok);border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.spacer{flex:1}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:8px;border:1.5px solid var(--ink);background:transparent;font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.primary::before{content:"";width:4px;height:16px;background:var(--flow);border-radius:2px}
+.btn.quiet{border-color:var(--rule)}
+.btn:disabled{opacity:.5;cursor:progress}
+.icon{width:38px;padding:0;justify-content:center;height:38px}
+
+/* layout */
+.shell{flex:1;display:grid;grid-template-columns:minmax(380px,560px) minmax(0,1fr);min-height:0}
+.editor{min-width:0;display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--rule);background:var(--paper)}
+.tabs{display:flex;gap:4px;overflow-x:auto;padding:10px 12px 0;border-bottom:1px solid var(--rule);scrollbar-width:thin}
+.tabs button{border:0;background:none;padding:8px 12px 10px;font-weight:600;font-size:15px;color:var(--steel);cursor:pointer;white-space:nowrap;border-radius:6px 6px 0 0;position:relative}
+.tabs button[aria-selected="true"]{color:var(--ink);box-shadow:inset 0 -3px 0 var(--flow)}
+.tabs button .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--bad);margin-left:6px;vertical-align:middle}
+.form{flex:1;overflow-y:auto;padding:18px 18px 80px}
+.intro{font-size:15px;color:var(--steel);margin:0 0 16px;max-width:60ch}
+.intro code,.hint code{background:var(--field);border:1px solid var(--rule);padding:0 4px;border-radius:4px;font-size:13px}
+.preview{display:flex;flex-direction:column;min-height:0;background:color-mix(in srgb,var(--rule) 40%,var(--paper))}
+.pv-bar{display:flex;gap:8px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--rule);font-size:14px;color:var(--steel)}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:none;padding:5px 12px;cursor:pointer;font-size:14px;font-weight:600;color:var(--steel)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.pv-frame{flex:1;display:flex;justify-content:center;min-height:0;overflow:auto;padding:0}
+.pv-frame iframe{border:0;width:100%;height:100%;background:var(--paper)}
+.pv-frame.mobile{padding:16px}
+.pv-frame.mobile iframe{width:390px;max-width:100%;border:1px solid var(--rule);border-radius:18px}
+@media (max-width:960px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .preview{display:none}
+  body.show-pv .editor{display:none}
+  body.show-pv .preview{display:flex}
+}
+@media (min-width:961px){#pvToggle{display:none}}
+@media (max-width:640px){
+  .top{gap:8px;padding:8px 12px}
+  .top h1{font-size:19px;flex-basis:100%}
+  .top h1 a{margin-left:auto}
+  .top .spacer{display:none}
+  .top .btn{padding:7px 11px;font-size:14px}
+  .top .icon{width:34px;height:34px;padding:0}
+  .pill{order:9;flex-basis:100%;text-align:center}
+}
+
+/* fields */
+fieldset{border:0;margin:0 0 22px;padding:0;min-width:0}
+legend{font:700 20px var(--display);padding:0;margin-bottom:10px}
+.f{margin-bottom:14px}
+.f > label,.f .lab{display:block;font-weight:600;font-size:14px;margin-bottom:4px}
+.f input[type=text],.f input[type=month],.f input[type=url],.f input[type=password],.f select,.f textarea{box-sizing:border-box;width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1.5px solid var(--rule);border-radius:7px;background:var(--field);color:var(--ink)}
+.f textarea{resize:vertical;min-height:72px;line-height:1.45}
+.f textarea.lines{min-height:110px}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--focus);outline:none;background:var(--surface)}
+.f.bad input,.f.bad textarea,.f.bad select{border-color:var(--bad)}
+.f .msg{color:var(--bad);font-size:13px;font-weight:600;margin-top:4px}
+.hint{font-size:13px;color:var(--steel);margin-top:4px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:480px){.row{grid-template-columns:minmax(0,1fr)}}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:15px;cursor:pointer}
+.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--ink)}
+
+/* array cards */
+.arr{display:flex;flex-direction:column;gap:10px}
+.card{border:1.5px solid var(--rule);border-radius:10px;background:var(--surface)}
+.card[open]{border-color:var(--ink)}
+.card > summary{list-style:none;display:flex;align-items:center;gap:8px;padding:10px 10px 10px 14px;cursor:pointer}
+.card > summary::-webkit-details-marker{display:none}
+.card > summary .t{flex:1;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card > summary .t small{font-weight:400;color:var(--steel);margin-left:6px}
+.card.has-err > summary{box-shadow:inset 4px 0 0 var(--bad)}
+.ctl{display:flex;gap:2px}
+.ctl button{width:30px;height:30px;border:0;background:none;border-radius:6px;cursor:pointer;color:var(--steel);display:grid;place-items:center}
+.ctl button:hover{background:var(--field);color:var(--ink)}
+.ctl button.del:hover{color:var(--bad)}
+.ctl button:disabled{opacity:.25;cursor:default}
+.card .inner{padding:4px 14px 6px;border-top:1px solid var(--rule)}
+.card .card{background:var(--field)}
+.add{align-self:flex-start;border:1.5px dashed var(--steel);background:none;border-radius:8px;padding:8px 14px;font-weight:600;cursor:pointer;color:var(--steel)}
+.add:hover{border-color:var(--ink);color:var(--ink)}
+
+/* banners, errors, dialog, toast */
+.banner{margin:0 0 16px;padding:12px 14px;border-radius:8px;border:1.5px solid var(--flow);background:color-mix(in srgb,var(--flow) 12%,transparent);font-size:15px}
+.banner.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 8%,transparent)}
+.banner .acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.banner ul{margin:6px 0 0;padding-left:18px}
+.banner li button{background:none;border:0;padding:0;text-align:left;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+dialog{border:1.5px solid var(--ink);border-radius:12px;background:var(--surface);color:var(--ink);padding:0;width:min(520px,calc(100vw - 24px));max-height:calc(100vh - 40px)}
+dialog::backdrop{background:rgba(10,25,32,.55)}
+dialog .dh{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--rule)}
+dialog h2{font:700 24px var(--display);margin:0}
+dialog .db{padding:16px 18px;overflow:auto}
+dialog .df{display:flex;gap:8px;justify-content:flex-end;padding:12px 18px;border-top:1px solid var(--rule);flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:8px;font-weight:500;opacity:0;transition:.25s;pointer-events:none;z-index:99;max-width:calc(100vw - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+textarea.raw{box-sizing:border-box;width:100%;min-height:60vh;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:12px;border:1.5px solid var(--rule);border-radius:8px;background:var(--field);color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <h1>Editor portofolio <a href="./" target="_blank" rel="noopener">Buka situs</a></h1>
+  <span class="pill" id="state">Memuat…</span>
+  <span class="spacer"></span>
+  <button class="btn quiet" id="pvToggle" type="button">Pratinjau</button>
+  <button class="btn quiet" id="dlBtn" type="button">Unduh JSON</button>
+  <button class="btn primary" id="saveBtn" type="button">Simpan ke GitHub</button>
+  <button class="btn quiet icon" id="setBtn" type="button" aria-label="Pengaturan GitHub" title="Pengaturan GitHub">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+  </button>
+</div>
+
+<div class="shell">
+  <div class="editor">
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="form" id="form"></div>
+  </div>
+  <div class="preview">
+    <div class="pv-bar">
+      <span>Pratinjau langsung, belum dipublikasikan</span><span class="spacer"></span>
+      <div class="seg" role="group" aria-label="Lebar pratinjau">
+        <button type="button" aria-pressed="true" data-w="desktop">Desktop</button><button type="button" aria-pressed="false" data-w="mobile">Ponsel</button>
+      </div>
+      <button class="btn quiet" id="pvBack" type="button" style="padding:5px 12px">Kembali ke form</button>
+    </div>
+    <div class="pv-frame" id="pvFrame"><iframe id="pv" title="Pratinjau situs" src="index.html?preview=1"></iframe></div>
+  </div>
+</div>
+
+<dialog id="dlg">
+  <div class="dh"><h2>Pengaturan GitHub</h2><button class="btn quiet icon" type="button" data-close aria-label="Tutup">✕</button></div>
+  <div class="db">
+    <p class="intro">Editor menyimpan langsung ke repo Anda. GitHub Pages lalu memperbarui situs otomatis dalam sekitar satu menit.</p>
+    <div class="row">
+      <div class="f"><label for="sOwner">Pemilik repo</label><input type="text" id="sOwner" autocomplete="off"></div>
+      <div class="f"><label for="sRepo">Nama repo</label><input type="text" id="sRepo" autocomplete="off"></div>
+    </div>
+    <div class="row">
+      <div class="f"><label for="sBranch">Branch</label><input type="text" id="sBranch" autocomplete="off"><div class="hint">Branch yang dipakai GitHub Pages (Settings → Pages).</div></div>
+      <div class="f"><label for="sPath">File data</label><input type="text" id="sPath" autocomplete="off"></div>
+    </div>
+    <div class="f"><label for="sToken">Token akses GitHub</label><input type="password" id="sToken" autocomplete="off" placeholder="github_pat_…">
+      <div class="hint">Buat <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">fine-grained token</a>: pilih hanya repo ini, izin <b>Contents: Read and write</b>. Token tidak pernah ikut tersimpan di repo.</div></div>
+    <label class="check"><input type="checkbox" id="sRemember"> Ingat token di perangkat ini<br></label>
+    <div class="hint" style="margin-left:28px">Tanpa centang, token hilang saat tab ditutup. Jangan centang di komputer bersama.</div>
+    <p id="sResult" class="hint" style="margin-top:14px"></p>
+  </div>
+  <div class="df">
+    <button class="btn quiet" type="button" id="sPull">Muat versi terbaru dari GitHub</button>
+    <button class="btn quiet" type="button" id="sTest">Tes koneksi</button>
+    <button class="btn primary" type="button" id="sSave">Simpan pengaturan</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script type="module">
+/* ---------- shared validator (same file the GitHub Action runs) ---------- */
+let validate = () => ({errors:[], warnings:[]}), ICONS = ["store","app","factory","server","shield","rig","clock","doc","hard","net","bolt","cloud","fiber"];
+try{
+  const src = await (await fetch("scripts/validate.mjs?v="+Date.now())).text();
+  const mod = await import(URL.createObjectURL(new Blob([src],{type:"text/javascript"})));
+  validate = mod.validate; ICONS = mod.ICONS;
+}catch(e){ console.warn("Validator not loaded", e); }
+
+const $ = id => document.getElementById(id);
+const clone = o => JSON.parse(JSON.stringify(o));
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const slug = s => String(s||"").toLowerCase().normalize("NFKD").replace(/[^\w\s-]/g,"").trim().replace(/[\s_]+/g,"-").replace(/-+/g,"-").slice(0,40);
+const store = { get(k){ try{ return sessionStorage.getItem(k) ?? localStorage.getItem(k); }catch(e){ return null; } },
+  set(k,v,persist){ try{ (persist?localStorage:sessionStorage).setItem(k,v); (persist?sessionStorage:localStorage).removeItem(k); }catch(e){} },
+  del(k){ try{ sessionStorage.removeItem(k); localStorage.removeItem(k); }catch(e){} } };
+const toast = $("toast"); let tt;
+const say = m => { toast.textContent=m; toast.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>toast.classList.remove("show"),2600); };
+
+/* ---------- form schema: what each tab edits ---------- */
+const TOKENS = `Kode otomatis: <code>{years}</code> lama pengalaman (angka), <code>{YearsWord}</code>/<code>{yearsWord}</code> dalam kata, <code>{current}</code> perusahaan saat ini, <code>{ProjectCount}</code> jumlah proyek, <code>{rev}</code> tahun update. Dihitung ulang sendiri setiap bulan.`;
+const ICON_OPTS = ICONS.map(i=>[i,i]);
+const SCHEMA = [
+  { id:"profil", label:"Profil", intro:"Nama, status ketersediaan dan kalimat pembuka di bagian paling atas.", fields:[
+    { k:"hero", type:"group", label:"Bagian atas (hero)", fields:[
+      { k:"available", type:"bool", label:"Saya sedang tersedia untuk pekerjaan baru", hint:"Mengubah titik status hijau/oranye dan teks di bawah." },
+      { k:"status", label:"Teks status saat tersedia" },
+      { k:"statusUnavailable", label:"Teks status saat tidak tersedia" },
+      { k:"pitch", type:"textarea", label:"Kalimat pembuka", hint:TOKENS },
+      { k:"primaryCtaLabel", label:"Label tombol WhatsApp", hint:"Tombol memakai nomor kontak yang ditandai “Utama”." },
+      { k:"secondaryCta", type:"group", label:"Tombol kedua", fields:[ { k:"label", label:"Label" }, { k:"href", label:"Tujuan", hint:"Contoh #projects atau #contact" } ] }
+    ]},
+    { k:"site", type:"group", label:"Identitas & Google", fields:[
+      { k:"name", label:"Nama lengkap" },
+      { k:"role", label:"Peran / jabatan" },
+      { k:"location", label:"Kota domisili" },
+      { k:"footerNote", label:"Catatan di footer" },
+      { k:"metaTitle", label:"Judul di tab browser & Google" },
+      { k:"metaDescription", type:"textarea", label:"Deskripsi untuk Google", hint:TOKENS },
+      { k:"repo", label:"Repo GitHub (pemilik/nama)", hint:"Dipakai untuk tanggal “Updated” otomatis di footer." }
+    ]}
+  ]},
+  { id:"datasheet", label:"Datasheet", intro:"Tabel ringkas di samping nama. "+TOKENS, fields:[
+    { k:"datasheet", type:"array", label:"Baris", add:"Tambah baris", title:r=>r.label||"(baris baru)", sub:r=>r.value, blank:()=>({label:"",value:""}),
+      item:[ { k:"label", label:"Label" }, { k:"value", label:"Isi" } ] }
+  ]},
+  { id:"career", label:"Karier", intro:"Urutkan dari yang paling lama. Durasi, tahun dan “Present” dihitung otomatis dari tanggal. Kosongkan tanggal selesai untuk pekerjaan saat ini.", fields:[
+    { k:"career", type:"array", label:"Pekerjaan", add:"Tambah pekerjaan", autoId:"short",
+      title:r=>r.title||"(pekerjaan baru)", sub:r=>r.next?"slot tujuan":`${r.short||""} ${r.start||""}${r.start?" – "+(r.end||"sekarang"):""}`,
+      blank:()=>({id:"",short:"",title:"",company:"",start:"",end:"",place:"",icon:"server",relevance:"",groups:[{label:"",items:[]}]}),
+      item:[
+        { k:"title", label:"Jabatan" },
+        { k:"company", label:"Perusahaan" },
+        { row:[ { k:"short", label:"Nama singkat (di garis karier)" }, { k:"id", label:"ID link", hint:"Otomatis dari nama singkat." } ] },
+        { row:[ { k:"start", type:"month", label:"Mulai" }, { k:"end", type:"month", label:"Selesai", hint:"Kosong = masih bekerja." } ] },
+        { row:[ { k:"place", label:"Lokasi" }, { k:"icon", type:"select", label:"Ikon", options:ICON_OPTS } ] },
+        { k:"relevance", type:"textarea", label:"Kenapa relevan untuk Oil & Gas" },
+        { k:"featured", type:"bool", label:"Tampilkan pertama saat halaman dibuka" },
+        { k:"next", type:"bool", label:"Ini slot “Next” (pekerjaan yang dicari), bukan pengalaman" },
+        { k:"groups", type:"array", label:"Kelompok tugas", add:"Tambah kelompok", title:g=>g.label||"Tugas", sub:g=>`${(g.items||[]).length} poin`, blank:()=>({label:"",items:[]}),
+          item:[ { k:"label", label:"Judul kelompok (opsional)" }, { k:"items", type:"lines", label:"Poin tugas", hint:"Satu poin per baris." } ] }
+      ] }
+  ]},
+  { id:"capabilities", label:"Kemampuan", intro:"Enam kartu kemampuan inti. Jumlahnya bebas.", fields:[
+    { k:"capabilities", type:"array", label:"Kemampuan", add:"Tambah kemampuan", title:c=>c.title||"(baru)", blank:()=>({icon:"clock",title:"",text:"",site:""}),
+      item:[ { row:[ { k:"title", label:"Judul" }, { k:"icon", type:"select", label:"Ikon", options:ICON_OPTS } ] }, { k:"text", type:"textarea", label:"Penjelasan" }, { k:"site", label:"Cocok untuk", hint:"Contoh: Fits: control rooms, plant IT" } ] }
+  ]},
+  { id:"projects", label:"Proyek", intro:"Urutan di sini = urutan di situs; proyek pertama terbuka otomatis. Jumlahnya otomatis masuk ke kalimat pengantar ({ProjectCount}). Setiap proyek punya link langsung: situs/#p-ID.", fields:[
+    { k:"projects", type:"array", label:"Proyek", add:"Tambah proyek", autoId:"title", title:p=>p.title||"(proyek baru)", sub:p=>p.start?`${p.start} – ${p.end||"sekarang"}`:"",
+      blank:()=>({id:"",title:"",sub:"",start:"",end:"",context:"",did:"",result:"",tags:[]}),
+      item:[
+        { k:"title", label:"Judul proyek" },
+        { k:"sub", label:"Perusahaan · peran" },
+        { row:[ { k:"start", type:"month", label:"Mulai" }, { k:"end", type:"month", label:"Selesai", hint:"Kosong = masih berjalan." } ] },
+        { k:"id", label:"ID link", hint:"Otomatis dari judul." },
+        { k:"context", type:"textarea", label:"Situasi" },
+        { k:"did", type:"textarea", label:"Yang saya kerjakan" },
+        { k:"result", type:"textarea", label:"Hasil" },
+        { k:"tags", type:"lines", label:"Tag", hint:"Satu tag per baris. Klik tag di situs akan mencari skill terkait." }
+      ] }
+  ]},
+  { id:"skills", label:"Skill", intro:"Kategori menjadi tombol filter. Jumlah per kategori dihitung otomatis.", fields:[
+    { k:"skills", type:"array", label:"Kategori", add:"Tambah kategori", title:s=>s.category||"(kategori baru)", sub:s=>`${(s.items||[]).length} skill`, blank:()=>({category:"",items:[]}),
+      item:[ { k:"category", label:"Nama kategori" }, { k:"items", type:"lines", label:"Skill", hint:"Satu skill per baris." } ] }
+  ]},
+  { id:"education", label:"Pendidikan", intro:"Pendidikan formal, kursus dan sertifikasi.", fields:[
+    { k:"education", type:"array", label:"Pendidikan & kursus", add:"Tambah pendidikan", title:e=>e.title||"(baru)", sub:e=>e.yr, blank:()=>({yr:"",title:"",where:""}),
+      item:[ { row:[ { k:"title", label:"Gelar / kursus" }, { k:"yr", label:"Tahun" } ] }, { k:"where", label:"Institusi" } ] },
+    { k:"certifications", type:"array", label:"Sertifikasi", add:"Tambah sertifikasi", title:c=>c.name||"(baru)", sub:c=>({done:"selesai",progress:"proses","on-request":"atas permintaan"})[c.status]||"", blank:()=>({name:"",status:"done",year:"",note:""}),
+      item:[ { k:"name", label:"Nama sertifikasi" }, { row:[ { k:"status", type:"select", label:"Status", options:[["done","Selesai (Certified)"],["progress","Sedang berjalan"],["on-request","Bisa diambil atas permintaan"]] }, { k:"year", label:"Tahun" } ] }, { k:"note", label:"Catatan" } ] }
+  ]},
+  { id:"contact", label:"Kontak", intro:"Tombol WhatsApp, Telepon, Email dan Salin dibuat otomatis dari jenis kontak. Jam lokal tampil jika zona waktu diisi.", fields:[
+    { k:"contact", type:"group", label:"", fields:[
+      { k:"lines", type:"array", label:"Kontak", add:"Tambah kontak", title:l=>l.label||"(kontak baru)", sub:l=>l.value, blank:()=>({label:"",type:"phone",value:"",tz:"",city:"",primary:false}),
+        item:[
+          { row:[ { k:"label", label:"Label" }, { k:"type", type:"select", label:"Jenis", options:[["phone","Telepon / WhatsApp"],["email","Email"]] } ] },
+          { k:"value", label:"Nomor atau email", hint:"Nomor dengan kode negara, contoh +971 54 213 2435" },
+          { row:[ { k:"tz", type:"select", label:"Zona waktu", options:[["","(tanpa jam)"],["Asia/Dubai","Dubai / UAE"],["Asia/Jakarta","Jakarta (WIB)"],["Asia/Makassar","Makassar (WITA)"],["Asia/Riyadh","Riyadh"],["Asia/Qatar","Doha"],["Asia/Muscat","Muscat"],["Asia/Kuwait","Kuwait"],["Asia/Bahrain","Bahrain"],["Asia/Singapore","Singapore"]] }, { k:"city", label:"Nama kota di jam" } ] },
+          { k:"primary", type:"bool", label:"Utama (dipakai tombol WhatsApp di atas)" }
+        ] }
+    ]}
+  ]},
+  { id:"sections", label:"Judul seksi", intro:"Judul besar dan kalimat pengantar setiap bagian. "+TOKENS, fields:
+    ["career","capabilities","projects","skills","education","contact"].map(s=>({ k:"sections", type:"group", label:"", sub:s, fields:[] })) },
+  { id:"json", label:"JSON", raw:true, intro:"Edit langsung seluruh data. Klik “Terapkan” untuk memeriksa dan memakai perubahan." }
+];
+// expand the sections tab into one group per section
+SCHEMA.find(t=>t.id==="sections").fields = [{ k:"sections", type:"group", label:"", fields:
+  [["career","Karier"],["capabilities","Kemampuan"],["projects","Proyek"],["skills","Skill"],["education","Pendidikan"],["contact","Kontak"]].map(([k,l])=>({ k, type:"group", label:l, fields:[ { k:"title", label:"Judul" }, { k:"intro", type:"textarea", label:"Pengantar" } ] })) }];
+
+/* ---------- state ---------- */
+let data = null, baseline = null, tab = "profil", lastResult = {errors:[],warnings:[]};
+const openCards = new Set();
+
+/* ---------- form engine ---------- */
+function renderForm(){
+  const t = SCHEMA.find(s=>s.id===tab), f = $("form");
+  f.innerHTML = "";
+  f.append(bannerSlot());
+  if (t.intro){ const p=document.createElement("p"); p.className="intro"; p.innerHTML=t.intro; f.append(p); }
+  if (t.raw) return renderRaw(f);
+  renderFields(f, data, t.fields, "");
+  markErrors();
+}
+function renderFields(host, obj, fields, path){
+  for (const f of fields){
+    if (f.row){ const r=document.createElement("div"); r.className="row"; host.append(r); renderFields(r, obj, f.row, path); continue; }
+    const p = path ? `${path}.${f.k}` : f.k;
+    if (f.type==="group"){
+      if (obj[f.k]==null || typeof obj[f.k]!=="object") obj[f.k] = {};
+      const fs=document.createElement("fieldset");
+      if (f.label){ const lg=document.createElement("legend"); lg.textContent=f.label; fs.append(lg); }
+      host.append(fs); renderFields(fs, obj[f.k], f.fields, p); continue;
+    }
+    if (f.type==="array"){ if(!Array.isArray(obj[f.k])) obj[f.k]=[]; renderArray(host, obj[f.k], f, p); continue; }
+    host.append(field(obj, f, p));
+  }
+}
+function field(obj, f, p){
+  const w=document.createElement("div"); w.className="f"; w.dataset.path=p;
+  const id="i_"+p.replace(/[^\w]/g,"_");
+  const v = obj[f.k];
+  if (f.type==="bool"){
+    w.innerHTML=`<label class="check"><input type="checkbox" id="${id}"${v?" checked":""}> ${esc(f.label)}</label>`;
+    w.querySelector("input").addEventListener("change", e=>{ obj[f.k]=e.target.checked; changed(); });
+  } else {
+    let ctl;
+    if (f.type==="textarea"||f.type==="lines") ctl=`<textarea id="${id}" class="${f.type==="lines"?"lines":""}" rows="${f.type==="lines"?5:3}">${esc(f.type==="lines"?(v||[]).join("\n"):v)}</textarea>`;
+    else if (f.type==="select") ctl=`<select id="${id}">${f.options.map(([val,l])=>`<option value="${esc(val)}"${(v??"")===val?" selected":""}>${esc(l)}</option>`).join("")}</select>`;
+    else ctl=`<input type="${f.type==="month"?"month":"text"}" id="${id}" value="${esc(v)}" ${f.type==="month"?'placeholder="YYYY-MM" pattern="\\d{4}-\\d{2}"':""}>`;
+    w.innerHTML=`<label for="${id}">${esc(f.label)}</label>${ctl}${f.hint?`<div class="hint">${f.hint}</div>`:""}`;
+    const el=w.querySelector("input,textarea,select");
+    el.addEventListener(f.type==="select"?"change":"input", ()=>{
+      obj[f.k] = f.type==="lines" ? el.value.split("\n").map(s=>s.trim()).filter(Boolean) : el.value;
+      changed();
+    });
+  }
+  return w;
+}
+const ICO = {
+  up:'<path d="M12 19V5M5 12l7-7 7 7"/>', down:'<path d="M12 5v14M5 12l7 7 7-7"/>',
+  dup:'<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/>', del:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>'
+};
+const ico = k => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[k]}</svg>`;
+function renderArray(host, arr, f, p){
+  const box=document.createElement("fieldset");
+  box.innerHTML = f.label ? `<legend>${esc(f.label)} <small style="font:500 14px var(--body);color:var(--steel)">${arr.length}</small></legend>` : "";
+  const list=document.createElement("div"); list.className="arr"; box.append(list); host.append(box);
+  const draw=()=>{
+    list.innerHTML="";
+    box.querySelector("legend small") && (box.querySelector("legend small").textContent = arr.length);
+    arr.forEach((item,i)=>{
+      const ip=`${p}[${i}]`;
+      const c=document.createElement("details"); c.className="card"; c.dataset.path=ip; c.open=openCards.has(ip);
+      c.innerHTML=`<summary><span class="t"></span><span class="ctl">
+        <button type="button" data-a="up" aria-label="Naikkan" title="Naikkan"${i===0?" disabled":""}>${ico("up")}</button>
+        <button type="button" data-a="down" aria-label="Turunkan" title="Turunkan"${i===arr.length-1?" disabled":""}>${ico("down")}</button>
+        <button type="button" data-a="dup" aria-label="Duplikat" title="Duplikat">${ico("dup")}</button>
+        <button type="button" data-a="del" class="del" aria-label="Hapus" title="Hapus">${ico("del")}</button></span></summary><div class="inner"></div>`;
+      const t=c.querySelector(".t");
+      const title=()=>{ t.innerHTML = esc(f.title(item)) + (f.sub && f.sub(item) ? `<small>${esc(f.sub(item))}</small>` : ""); };
+      title();
+      c.addEventListener("toggle", ()=>{ if(c.open) openCards.add(ip); else openCards.delete(ip); if(c.open && !c.querySelector(".inner").childElementCount){ renderFields(c.querySelector(".inner"), item, f.item, ip); markErrors(); } });
+      if (c.open) renderFields(c.querySelector(".inner"), item, f.item, ip);
+      c.addEventListener("input", e=>{ e.stopPropagation(); title(); });
+      c.addEventListener("change", e=>{ title();
+        if (f.autoId && !item.id && item[f.autoId]){ item.id = uniqueId(arr, slug(item[f.autoId])); const idEl=c.querySelector(`[data-path="${ip}.id"] input`); if(idEl) idEl.value=item.id; changed(); }
+      });
+      c.querySelector(".ctl").addEventListener("click", e=>{
+        const b=e.target.closest("button"); if(!b) return; e.preventDefault(); e.stopPropagation();
+        const a=b.dataset.a;
+        if (a==="del"){ if(!confirm(`Hapus “${f.title(item)}”?`)) return; arr.splice(i,1); }
+        if (a==="up"){ [arr[i-1],arr[i]]=[arr[i],arr[i-1]]; }
+        if (a==="down"){ [arr[i+1],arr[i]]=[arr[i],arr[i+1]]; }
+        if (a==="dup"){ const cp=clone(item); if("id" in cp) cp.id = cp.id ? uniqueId(arr, cp.id+"-copy") : ""; arr.splice(i+1,0,cp); }
+        // keep the moved/new card open
+        [...openCards].filter(k=>k.startsWith(p+"[")).forEach(k=>openCards.delete(k));
+        const target = a==="up"?i-1 : a==="down"?i+1 : a==="dup"?i+1 : -1;
+        if (target>=0) openCards.add(`${p}[${target}]`);
+        draw(); changed(); markErrors();
+      });
+      list.append(c);
+    });
+    const add=document.createElement("button"); add.type="button"; add.className="add"; add.textContent="+ "+(f.add||"Tambah");
+    add.addEventListener("click", ()=>{ arr.push(f.blank()); openCards.add(`${p}[${arr.length-1}]`); draw(); changed(); list.lastElementChild.previousElementSibling?.querySelector("input,textarea")?.focus(); });
+    list.append(add);
+  };
+  draw();
+}
+function uniqueId(arr, base){ let id=base||"item", n=2; const ids=new Set(arr.map(x=>x.id)); while(ids.has(id)) id=`${base}-${n++}`; return id; }
+
+/* raw JSON tab */
+function renderRaw(host){
+  const ta=document.createElement("textarea"); ta.className="raw"; ta.spellcheck=false; ta.value=JSON.stringify(data,null,2);
+  const msg=document.createElement("p"); msg.className="hint";
+  const b=document.createElement("button"); b.type="button"; b.className="btn primary"; b.textContent="Terapkan JSON"; b.style.marginTop="12px";
+  b.addEventListener("click", ()=>{
+    try{ const d=JSON.parse(ta.value); data=d; changed(); msg.textContent="Diterapkan."; msg.style.color="var(--ok)"; say("JSON diterapkan"); }
+    catch(e){ msg.textContent="JSON tidak valid: "+e.message; msg.style.color="var(--bad)"; }
+  });
+  host.append(ta,b,msg);
+}
+
+/* ---------- validation display ---------- */
+const TAB_OF = p => ({site:"profil",hero:"profil",datasheet:"datasheet",career:"career",capabilities:"capabilities",projects:"projects",skills:"skills",education:"education",certifications:"education",contact:"contact",sections:"sections"})[p.split(/[.\[]/)[0]] || "json";
+function markErrors(){
+  document.querySelectorAll(".f.bad").forEach(e=>{e.classList.remove("bad"); e.querySelector(".msg")?.remove();});
+  document.querySelectorAll(".card.has-err").forEach(e=>e.classList.remove("has-err"));
+  for (const er of lastResult.errors){
+    const el=document.querySelector(`.f[data-path="${CSS.escape(er.path)}"]`);
+    if (el){ el.classList.add("bad"); const m=document.createElement("div"); m.className="msg"; m.textContent=er.msg; el.append(m); }
+    document.querySelectorAll(".card[data-path]").forEach(c=>{ if(er.path.startsWith(c.dataset.path+".")||er.path.startsWith(c.dataset.path+"[")) c.classList.add("has-err"); });
+  }
+  const bad = new Set(lastResult.errors.map(e=>TAB_OF(e.path)));
+  document.querySelectorAll("#tabs button").forEach(b=>{ b.querySelector(".dot")?.remove(); if(bad.has(b.dataset.tab)) b.insertAdjacentHTML("beforeend",'<span class="dot" aria-label="ada kesalahan"></span>'); });
+}
+function goTo(path){
+  tab = TAB_OF(path);
+  // open every card on the way to the field
+  let acc=""; path.replace(/([^.\[\]]+)(\[\d+\])?/g,(all,k,idx)=>{ acc += (acc?".":"")+k; if(idx){ acc+=idx; openCards.add(acc); } });
+  drawTabs(); renderForm();
+  const el=document.querySelector(`.f[data-path="${CSS.escape(path)}"]`);
+  el?.scrollIntoView({block:"center"}); el?.querySelector("input,textarea,select")?.focus();
+}
+
+/* ---------- banners (draft restore, errors, save result) ---------- */
+let banner = null;
+function bannerSlot(){ const d=document.createElement("div"); d.id="bannerSlot"; if(banner) d.append(banner); return d; }
+function setBanner(el){ banner=el; const s=$("bannerSlot"); if(s){ s.innerHTML=""; if(el) s.append(el); } }
+
+/* ---------- change tracking, draft autosave, preview ---------- */
+let pvTimer, draftTimer;
+function changed(){
+  lastResult = validate(data);
+  updateState();
+  clearTimeout(pvTimer); pvTimer=setTimeout(sendPreview, 220);
+  clearTimeout(draftTimer); draftTimer=setTimeout(()=>{ try{ localStorage.setItem("sl-admin-draft", JSON.stringify({data, at:Date.now()})); }catch(e){} }, 400);
+  if (lastResult.errors.length===0) markErrors(); else clearTimeout(markTimer), markTimer=setTimeout(markErrors, 500);
+}
+let markTimer;
+const changedKeys = () => baseline ? Object.keys({...data,...baseline}).filter(k=>k!=="updated" && JSON.stringify(data[k])!==JSON.stringify(baseline[k])) : [];
+function updateState(){
+  const s=$("state"), n=lastResult.errors.length, keys=changedKeys();
+  s.className="pill"; s.onclick=null;
+  if (n){ s.classList.add("err"); s.textContent=`${n} kesalahan perlu diperbaiki`; s.onclick=showErrors; }
+  else if (keys.length){ s.classList.add("dirty"); s.textContent=`Belum disimpan: ${keys.map(k=>SCHEMA.find(t=>TAB_OF(k)===t.id)?.label||k).filter((v,i,a)=>a.indexOf(v)===i).join(", ")}`; }
+  else { s.classList.add("ok"); s.textContent="Sama dengan versi live"; }
+}
+function showErrors(){
+  const b=document.createElement("div"); b.className="banner bad";
+  b.innerHTML=`<b>Perbaiki dulu sebelum menyimpan:</b><ul>${lastResult.errors.map((e,i)=>`<li><button type="button" data-i="${i}">${esc(e.msg)}</button> <span class="hint">(${esc(e.path)})</span></li>`).join("")}</ul>`;
+  b.addEventListener("click", e=>{ const x=e.target.closest("button[data-i]"); if(x) goTo(lastResult.errors[+x.dataset.i].path); });
+  setBanner(b);
+}
+function sendPreview(){ try{ $("pv").contentWindow.postMessage({type:"profile-preview", profile:clone(data)}, location.origin); }catch(e){} }
+addEventListener("message", e=>{ if(e.origin===location.origin && e.data?.type==="preview-ready" && data) sendPreview(); });
+
+/* ---------- tabs ---------- */
+function drawTabs(){
+  $("tabs").innerHTML = SCHEMA.map(t=>`<button type="button" role="tab" data-tab="${t.id}" aria-selected="${t.id===tab}">${esc(t.label)}</button>`).join("");
+  markErrors();
+}
+$("tabs").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; tab=b.dataset.tab; drawTabs(); renderForm(); $("form").scrollTop=0; });
+
+/* ---------- GitHub settings + API ---------- */
+function guessRepo(){
+  const h=location.hostname;
+  if (h.endsWith(".github.io")){ const owner=h.split(".")[0]; const seg=location.pathname.split("/").filter(Boolean)[0]; return {owner, repo: seg && !seg.includes(".") ? seg : h}; }
+  const [o,r] = (data?.site?.repo||"diego-cortez89/portofolio").split("/"); return {owner:o, repo:r};
+}
+function settings(){
+  let s={}; try{ s=JSON.parse(localStorage.getItem("sl-admin-gh")||"{}"); }catch(e){}
+  const g=guessRepo();
+  return { owner:s.owner||g.owner, repo:s.repo||g.repo, branch:s.branch||"main", path:s.path||"data/profile.json", token:store.get("sl-gh-token")||"" };
+}
+async function gh(method, url, body){
+  const S=settings();
+  if (!S.token) { const e=new Error("Token GitHub belum diisi. Buka Pengaturan (ikon roda gigi)."); e.status=0; throw e; }
+  const r = await fetch(`https://api.github.com/repos/${S.owner}/${S.repo}/${url}`, { method, headers:{ Accept:"application/vnd.github+json", Authorization:`Bearer ${S.token}`, "X-GitHub-Api-Version":"2022-11-28" }, body: body?JSON.stringify(body):undefined });
+  const j = await r.json().catch(()=>({}));
+  if (!r.ok){
+    const msg = { 401:"Token ditolak atau kedaluwarsa. Buat token baru di GitHub.", 403:"Token tidak punya izin “Contents: Read and write” untuk repo ini.", 404:`Repo, branch “${S.branch}” atau file “${S.path}” tidak ditemukan. Periksa Pengaturan.`, 409:"Versi file di GitHub berubah saat menyimpan. Coba simpan lagi.", 422:"GitHub menolak data: "+(j.message||"") }[r.status] || `GitHub error ${r.status}: ${j.message||""}`;
+    const e=new Error(msg); e.status=r.status; throw e;
+  }
+  return j;
+}
+const b64 = str => { const by=new TextEncoder().encode(str); let s=""; for(let i=0;i<by.length;i+=0x8000) s+=String.fromCharCode.apply(null, by.subarray(i,i+0x8000)); return btoa(s); };
+const unb64 = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g,"")), c=>c.charCodeAt(0)));
+async function remoteFile(){ const S=settings(); const j=await gh("GET", `contents/${S.path}?ref=${encodeURIComponent(S.branch)}`); return { sha:j.sha, data:JSON.parse(unb64(j.content)) }; }
+
+$("saveBtn").addEventListener("click", async ()=>{
+  lastResult = validate(data); updateState(); markErrors();
+  if (lastResult.errors.length){ showErrors(); say("Perbaiki kesalahan dulu"); return; }
+  if (!settings().token){ openSettings(); return; }
+  const btn=$("saveBtn"); btn.disabled=true; btn.textContent="Menyimpan…";
+  try{
+    const S=settings();
+    let sha;
+    try{
+      const r=await remoteFile(); sha=r.sha;
+      const strip = o => { const c=clone(o); delete c.updated; return JSON.stringify(c); };
+      if (baseline && strip(r.data)!==strip(baseline) && !confirm("File di GitHub sudah diubah dari tempat lain sejak editor ini dibuka. Timpa dengan versi Anda?")) throw Object.assign(new Error("Dibatalkan. Gunakan “Muat versi terbaru dari GitHub” di Pengaturan."),{status:-1});
+    }catch(e){ if(e.status!==404) throw e; }
+    data.updated = new Date().toISOString();
+    const keys = changedKeys();
+    const res = await gh("PUT", `contents/${S.path}`, { message:`Update ${keys.length?keys.join(", "):"profile"} via admin`, content:b64(JSON.stringify(data,null,2)+"\n"), branch:S.branch, sha });
+    baseline = clone(data);
+    try{ localStorage.removeItem("sl-admin-draft"); }catch(e){}
+    updateState();
+    const live = location.hostname.endsWith("github.io") ? location.origin+location.pathname.replace(/admin\.html$/,"") : `https://${S.owner}.github.io/${S.repo}/`;
+    const b=document.createElement("div"); b.className="banner";
+    b.innerHTML=`<b>Tersimpan ke GitHub.</b> Situs live diperbarui otomatis dalam sekitar 1 menit.
+      <div class="acts"><a class="btn quiet" href="${esc(live)}" target="_blank" rel="noopener">Buka situs live</a>
+      <a class="btn quiet" href="https://github.com/${esc(S.owner)}/${esc(S.repo)}/actions" target="_blank" rel="noopener">Lihat progres deploy</a>
+      <a class="btn quiet" href="${esc(res.commit?.html_url||"#")}" target="_blank" rel="noopener">Lihat perubahan</a></div>`;
+    setBanner(b); say("Tersimpan ke GitHub");
+  }catch(e){
+    if (e.status!==-1){ const b=document.createElement("div"); b.className="banner bad"; b.innerHTML=`<b>Belum tersimpan.</b> ${esc(e.message)}`; setBanner(b); }
+    else say(e.message);
+  }finally{ btn.disabled=false; btn.textContent="Simpan ke GitHub"; }
+});
+
+$("dlBtn").addEventListener("click", ()=>{
+  data.updated = new Date().toISOString();
+  const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)+"\n"],{type:"application/json"}));
+  const a=Object.assign(document.createElement("a"),{href:url,download:"profile.json"}); document.body.append(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  say("profile.json diunduh. Unggah ke folder data/ di repo.");
+});
+
+/* settings dialog */
+const dlg=$("dlg");
+function openSettings(){
+  const S=settings(); $("sOwner").value=S.owner; $("sRepo").value=S.repo; $("sBranch").value=S.branch; $("sPath").value=S.path; $("sToken").value=S.token;
+  let rem=false; try{ rem=!!localStorage.getItem("sl-gh-token"); }catch(e){} $("sRemember").checked=rem; $("sResult").textContent="";
+  dlg.showModal();
+}
+function saveSettings(){
+  try{ localStorage.setItem("sl-admin-gh", JSON.stringify({owner:$("sOwner").value.trim(), repo:$("sRepo").value.trim(), branch:$("sBranch").value.trim()||"main", path:$("sPath").value.trim()||"data/profile.json"})); }catch(e){}
+  const t=$("sToken").value.trim(); if(t) store.set("sl-gh-token", t, $("sRemember").checked); else store.del("sl-gh-token");
+}
+$("setBtn").addEventListener("click", openSettings);
+dlg.addEventListener("click", e=>{ if(e.target.closest("[data-close]") || e.target===dlg) dlg.close(); });
+$("sSave").addEventListener("click", ()=>{ saveSettings(); dlg.close(); say("Pengaturan disimpan"); });
+$("sTest").addEventListener("click", async ()=>{
+  saveSettings(); const r=$("sResult"); r.style.color=""; r.textContent="Memeriksa…";
+  try{ const f=await remoteFile(); r.style.color="var(--ok)"; r.textContent=`Terhubung. File ditemukan (${f.data.career?.length||0} karier, ${f.data.projects?.length||0} proyek).`; }
+  catch(e){ r.style.color="var(--bad)"; r.textContent=e.message; }
+});
+$("sPull").addEventListener("click", async ()=>{
+  saveSettings(); const r=$("sResult"); r.textContent="Memuat…";
+  try{ const f=await remoteFile(); if(changedKeys().length && !confirm("Ganti isi editor dengan versi dari GitHub? Perubahan yang belum disimpan akan hilang.")) { r.textContent=""; return; }
+    data=f.data; baseline=clone(f.data); openCards.clear(); setBanner(null); changed(); renderForm(); dlg.close(); say("Versi terbaru dari GitHub dimuat"); }
+  catch(e){ r.style.color="var(--bad)"; r.textContent=e.message; }
+});
+
+/* preview controls */
+document.querySelector(".seg").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b)); $("pvFrame").classList.toggle("mobile", b.dataset.w==="mobile"); });
+$("pvToggle").addEventListener("click", ()=>{ document.body.classList.add("show-pv"); sendPreview(); });
+$("pvBack").addEventListener("click", ()=>document.body.classList.remove("show-pv"));
+addEventListener("beforeunload", e=>{ if(changedKeys().length){ e.preventDefault(); e.returnValue=""; } });
+
+/* ---------- boot ---------- */
+try{
+  const r = await fetch("data/profile.json?v="+Date.now(), {cache:"no-store"});
+  if (!r.ok) throw new Error("HTTP "+r.status);
+  baseline = await r.json();
+  data = clone(baseline);
+}catch(e){
+  data = null;
+}
+let draft=null; try{ draft=JSON.parse(localStorage.getItem("sl-admin-draft")||"null"); }catch(e){}
+if (!data && draft){ data=draft.data; baseline=null; }
+if (!data){
+  $("form").innerHTML = `<div class="banner bad"><b>Data tidak bisa dimuat.</b> Buka editor ini dari situs GitHub Pages atau dari server lokal (<code>python3 -m http.server</code>), bukan dengan klik dua kali file. Atau isi token di Pengaturan lalu klik “Muat versi terbaru dari GitHub”.</div>`;
+  $("state").textContent="Tidak ada data";
+} else {
+  if (draft && baseline && JSON.stringify(draft.data)!==JSON.stringify(baseline)){
+    const b=document.createElement("div"); b.className="banner";
+    b.innerHTML=`Ada draf yang belum disimpan dari ${new Date(draft.at).toLocaleString("id-ID",{dateStyle:"medium",timeStyle:"short"})}.<div class="acts"><button class="btn primary" type="button" data-r="use">Lanjutkan draf</button><button class="btn quiet" type="button" data-r="drop">Buang draf</button></div>`;
+    b.addEventListener("click", e=>{ const x=e.target.closest("[data-r]"); if(!x) return;
+      if (x.dataset.r==="use"){ data=draft.data; changed(); renderForm(); }
+      else { try{ localStorage.removeItem("sl-admin-draft"); }catch(_){} }
+      setBanner(null); });
+    banner=b;
+  }
+  drawTabs(); lastResult=validate(data); renderForm(); updateState(); sendPreview();
+}
+</script>
+</body>
+</html>
